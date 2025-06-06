@@ -1,0 +1,12 @@
+@use './base/reset' as*;
+@use './components/Header' as*;
+@use './base/variables' as*;
+
+// @use './components/Footer' as*; // incluir depois
+
+body {
+  background: $fundo;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}

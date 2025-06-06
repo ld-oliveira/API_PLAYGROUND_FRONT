@@ -1,0 +1,34 @@
+@use '../base/variables' as*;
+
+.header {
+  background-color: $fundo;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ccc;
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    ul {
+      list-style: none;
+      display: flex;
+      gap: 5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      a {
+        text-decoration: none;
+        color: $titulos;
+        font-weight: bold;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $textos;
+        }
+      }
+    }
+  }
+}
