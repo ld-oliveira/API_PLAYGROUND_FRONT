@@ -2,33 +2,45 @@
 
 .header {
   background-color: $fundo;
-  padding: 1rem 2rem;
+  padding: 0.1rem 0.5rem;
   border-bottom: 1px solid #ccc;
 
   nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 4rem;
+    
 
-    ul {
-      list-style: none;
-      display: flex;
-      gap: 5rem;
-      margin: 0;
-      padding: 0;
-    }
 
-    li {
-      a {
-        text-decoration: none;
-        color: $titulos;
-        font-weight: bold;
-        transition: color 0.3s ease;
+ .nav-buttons {
+  display: flex;
+  gap: 10rem;
+  justify-content: center;
+}
 
-        &:hover {
-          color: $textos;
-        }
-      }
-    }
-  }
+.nav-buttons button {
+  background-color: $titulos;
+  color: $fundo;
+  border: none;
+  padding: 0.5rem 1.4rem;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $textos
+  }}}}
+  
+
+.logo-area {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
 }
