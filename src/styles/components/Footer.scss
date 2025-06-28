@@ -1,0 +1,16 @@
+@use '../base/variables' as *;
+
+.footer {
+  background-color: $fundo; 
+  color: $titulos; 
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  border-top: 2px solid $mouseover;
+  margin-top: 2rem;
+
+  p {
+    margin: 0;
+    font-weight: bold;
+  }
+}
