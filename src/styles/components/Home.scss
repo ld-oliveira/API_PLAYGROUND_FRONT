@@ -1,37 +1,91 @@
-@use '../base/variables' as*;
+@use '../base/variables' as *;
 
-.home-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20rem;
-    padding: 2rem;
+.home-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; // ajuda na responsividade
+  gap: 10rem;
+  padding: 10rem;
+  text-align: center; // alinha o texto centralizado quando estiver em coluna
 }
 
-.descricao{
-    background-color: $titulos;
-    padding: 2rem;
-    border-radius: 2rem;
-    max-width: 600px;
-    color: $fundo;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    box-shadow: 0 0 10px rgba($color: #CFFE00, $alpha: 1.0);
+.descricao {
+  background-color: $titulos;
+  padding: 2rem;
+  border-radius: 2rem;
+  max-width: 600px;
+  color: $fundo;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  box-shadow: 0 0 10px rgba($color: #CFFE00, $alpha: 1.0);
+  flex: 1 1 300px; // flexível e adaptável
+  min-width: 280px;
+
+  //mouseover na descricao
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 40px rgba($color: #CFFE00, $alpha: 0.9);
 }
+
+
+
+}
+
+.foto-container {
+  width: 280px;
+  height: 280px;
+  border-radius: 70%;
+  overflow: hidden;
+  border: 2px solid $titulos;
+  box-shadow: 0 0 10px rgba($color: #CFFE00, $alpha: 1.0);
+  flex-shrink: 0;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba($color: #CFFE00, $alpha: 0.9);
+  }
+
+
+  img.foto-perfil {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// Responsivo para telas menores
+@media (max-width: 768px) {
+  .home-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .descricao {
+    font-size: 1rem;
+    padding: 1.5rem;
+  }
 
   .foto-container {
-    width: 300px;
-    height: 300px;
-    border-radius: 70%;
-    overflow: hidden;
-    border: 2px solid #CFFE00;
-    flex-shrink: 0;
-    box-shadow: 0 0 10px rgba($color: #CFFE00, $alpha: 1.0);
+    width: 200px;
+    height: 200px;
+  }
+}
 
-    }
-
-    .foto-perfil {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      }
+// animação entrada
+@keyframes fadeInUp { 
+  from {
+    opacity: 0;
+    transform: translateY(300px);//de baixo pra cima
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.home-container {
+  animation: fadeInUp 3s ease-out both; //tempo de animação 
+}

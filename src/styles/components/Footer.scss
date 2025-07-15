@@ -1,16 +1,31 @@
 @use '../base/variables' as *;
 
 .footer {
-  background-color: $fundo; 
-  color: $titulos; 
   padding: 1rem;
   text-align: center;
-  font-size: 1rem;
+  background-color: $fundo;
+  color: $textos;
   border-top: 2px solid $mouseover;
-  margin-top: 2rem;
 
   p {
-    margin: 0;
-    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .footer__icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    a {
+      color: $textos;
+      font-size: 1.5rem;
+      transition: transform 0.2s ease, color 0.3s ease;
+
+      &:hover {
+        color: $mouseover;
+        transform: scale(1.2);
+      }
+    }
   }
 }
