@@ -1,0 +1,46 @@
+@use '../base/variables' as *;
+
+
+.title-contato {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  // centraliza verticalmente
+    align-items: center;      // centraliza horizontalmente
+    flex-wrap: wrap;
+    text-align: center;
+    background-color: $titulos;
+    padding: 0.5rem;
+    border-radius: 3rem;
+    max-width: 600px;
+    color: $fundo;
+    font-size: 1.2rem;
+    box-shadow: 0 0 10px rgba($color: #CFFE00, $alpha: 1.0);
+    flex: 1 1 100%;
+    min-width: 50px;
+    margin: 0 auto;
+    margin-top: 2rem;
+
+}
+
+.div-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 3rem;
+    border-radius: 3rem;
+}
+
+
+.Contato-icon {
+      color: $mouseover;
+      font-size: 5rem;
+      border-radius: 3rem;
+      padding: 2rem;
+      
+
+  &:hover {
+    transform:scale3d(2);
+    box-shadow: 0 0 40px rgba($color: #CFFE00, $alpha: 0.9);
+      }
+      }

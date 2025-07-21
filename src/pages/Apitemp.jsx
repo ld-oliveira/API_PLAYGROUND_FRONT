@@ -22,7 +22,7 @@ const Apitemp = () => {
       const latitude = dataCoords[0].lat;
       const longitude = dataCoords[0].lon;
 
-      // Chamar sua API Django com as coordenadas
+      // Chamar clima atual"
       const response = await fetch(`http://localhost:8000/api/clima/?lat=${latitude}&lon=${longitude}`);
       const dados = await response.json();
 
@@ -31,6 +31,10 @@ const Apitemp = () => {
         `http://localhost:8000/api/proximas/?lat=${latitude}&lon=${longitude}`
       );
       const dadosProximas = await responseProximas.json();
+
+      // Chamar previsão de amanhã
+    const responseAmanha = await fetch(`http://localhost:8000/api/amanha/?lat=${latitude}&lon=${longitude}`);
+    const dadosAmanha = await responseAmanha.json();
 
       // Formatar a resposta
       const formatado = dadosProximas.map((hora) => ({
@@ -43,10 +47,9 @@ const Apitemp = () => {
 
       setProximas(formatado);
 
-      // Resultado principal
       setResultado({
         atual: dados.data?.values?.temperature ?? "",
-        amanha: "26°C", // Pode ajustar conforme necessário
+        amanha: dadosAmanha?.values?.temperatureAvg? `${dadosAmanha.values.temperatureAvg}°C`: "Indisponível",
       });
     } catch (error) {
       console.error("Erro:", error);
@@ -85,7 +88,7 @@ const Apitemp = () => {
             </ul>
           </div>
           <p>
-            <strong>Amanhã:</strong> {resultado.amanha}
+            <strong>Media prevista para Amanhã:</strong> {resultado.amanha}
           </p>
         </div>
       )}
