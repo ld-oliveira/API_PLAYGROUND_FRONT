@@ -10,7 +10,7 @@ const Header = () => {
           <div className="nav-buttons">
           <Link to="/"><button>Home</button></Link>
           <Link to="/apitemp"><button>Temperatura</button></Link>
-          <Link to="/API 2"><button>API 2</button></Link>
+          <Link to="/ApiPoke"><button>Pokedex</button></Link>
           <Link to="/API 3"><button>API 3</button></Link>
           <Link to="/API 4"><button>API 4</button></Link>
           <Link to="/API 5"><button>API 5</button></Link>

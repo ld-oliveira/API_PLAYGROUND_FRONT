@@ -1,13 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import imagemFixa from '../assets/images/foto-404.png';
+import '../styles/components/NotFound.scss';
 
 const NotFound = () => {
   return (
-    <div>
-      <h2>Erro 404</h2>
-      <p>Página não encontrada.</p>
-      <Link to="/">Voltar para a página inicial</Link>
-    </div>
+    <seaction>
+
+      <div>
+        <Link className="link-NotFound "to="/">Voltar para a página inicial</Link>
+      </div>
+
+      <div className="div-404">
+        <img className="foto-404" src={imagemFixa} alt="Descrição da imagem" />
+      
+      </div>
+      
+    
+    </seaction>
   );
 };
 

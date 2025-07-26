@@ -17,7 +17,7 @@
   border-radius: 2rem;
   max-width: 600px;
   color: $fundo;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.6;
   box-shadow: 0 0 10px rgba($color: #CFFE00, $alpha: 1.0);
   flex: 1 1 300px; // flexível e adaptável
@@ -88,4 +88,12 @@
 }
 .home-container {
   animation: fadeInUp 3s ease-out both; //tempo de animação 
+}
+
+.link-contato {
+  color: blue;
+
+  &:hover {
+    color: black
+  }
 }

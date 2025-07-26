@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route,} from 'react-router-dom';
 
 import Home from './pages/Home';
 import Contato from './pages/Contato';
 import NotFound from './pages/NotFound';
 import Apitempo from './pages/Apitemp';
+import Apipoke from './pages/Apipoke';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/Apitemp" element={<Apitempo />} />
+            <Route path="/Apipoke" element={<Apipoke/>}/>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

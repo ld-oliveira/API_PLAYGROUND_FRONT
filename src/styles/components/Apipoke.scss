@@ -1,0 +1,145 @@
+@use '../base/variables' as *;
+
+.seaction-titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  color: $titulos;
+
+  h1 {
+    font-size: 2rem;
+
+    @media (max-width: 600px) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.seaction-pokemon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem;
+  padding: 2rem;
+  color: $titulos;
+  text-align: center;
+}
+
+.caixa-descricao {
+  background-color: $titulos;
+  color: black;
+  padding: 1rem;
+  border: 3px solid $textos;
+  border-radius: 15px;
+  max-width: 300px;
+  word-break: break-word;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba($color: #CFFE00, $alpha: 0.5);
+  }
+
+  @media (max-width: 768px) {
+    margin: 1rem auto;
+    max-width: 90%;
+  }
+}
+
+.poke-img {
+  max-width: 200px;
+  border-radius: 100px;
+
+  @media (max-width: 768px) {
+    max-width: 150px;
+  }
+}
+
+.bt-pesquisa {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: $mouseover;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+
+  @media (max-width: 600px) {
+    margin-top: 1rem;
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+form {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    padding: 0.5rem;
+    width: 60%;
+    border-radius: 8px;
+    border: none;
+    max-width: 15rem;
+
+    @media (max-width: 600px) {
+      width: 80%;
+    }
+  }
+
+  .bt-pesquisa {
+    margin-top: 1rem;
+  }
+}
+
+.div-dados-pokemon {
+  padding: 2rem;
+  margin: 2rem;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    margin: 1rem auto;
+    width: 100%;
+  }
+}
+
+.retorno-numero{
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.bt-tipo{
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: $mouseover;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tipagem{
+    padding: 1rem;
+}
+
+.fraquezas{
+    padding: 1rem;
+}
