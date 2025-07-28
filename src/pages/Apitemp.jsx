@@ -23,17 +23,16 @@ const Apitemp = () => {
       const longitude = dataCoords[0].lon;
 
       // Chamar clima atual"
-      const response = await fetch(`http://localhost:8000/api/clima/?lat=${latitude}&lon=${longitude}`);
+      const response = await fetch(`https://api-playground-back.onrender.com/clima?lat=${latitude}&lon=${longitude}`)
       const dados = await response.json();
 
       // Buscar previsão para as próximas 6 horas
-      const responseProximas = await fetch(
-        `http://localhost:8000/api/proximas/?lat=${latitude}&lon=${longitude}`
-      );
+      const responseProximas = await fetch(`https://api-playground-back.onrender.com/proximas?lat=${latitude}&lon=${longitude}`)
+
       const dadosProximas = await responseProximas.json();
 
       // Chamar previsão de amanhã
-    const responseAmanha = await fetch(`http://localhost:8000/api/amanha/?lat=${latitude}&lon=${longitude}`);
+    const responseAmanha = await fetch(`https://api-playground-back.onrender.com/amanha?lat=${latitude}&lon=${longitude}`)
     const dadosAmanha = await responseAmanha.json();
 
       // Formatar a resposta
