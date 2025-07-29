@@ -1,4 +1,3 @@
-import React from "react";
 import '../styles/components/Contato.scss';
 import { FaGithub, FaLinkedin, FaEnvelope,FaInstagram,FaWhatsapp, } from 'react-icons/fa';
 

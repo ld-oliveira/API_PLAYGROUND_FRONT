@@ -1,0 +1,40 @@
+@use '../base/variables' as *;
+
+
+.patch-notes {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: $titulos;
+  }
+
+  .note {
+    background: $titulos;
+    border-left: 4px solid #0077ff;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+
+      span {
+        font-size: 0.9rem;
+        color: #666;
+      }
+    }
+
+    p {
+      white-space: pre-line;
+      color: $fundo;
+      font-weight:700;
+
+    }
+  }
+}
