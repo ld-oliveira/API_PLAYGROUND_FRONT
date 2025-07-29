@@ -1,53 +1,95 @@
-@use '../base/variables' as*;
+@use '../base/variables' as *;
 
 .header {
   background-color: $fundo;
-  padding: 0.1rem 0.5rem;
+  padding: 0.5rem 1rem;
   border-bottom: 1px solid #ccc;
-  
 
   nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 4rem;
-    
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: relative;
+    min-height: 70px;
 
+    .logo-area {
+      display: flex;
+      align-items: center;
+      flex: 1 1 auto;
 
- .nav-buttons {
-  display: flex;
-  gap: 5rem;
-  justify-content: center;
-  
-}
+      .logo {
+        height: 50px;
+        object-fit: contain;
 
-.nav-buttons button {
-  background-color: $titulos;
-  color: $fundo;
-  border: none;
-  padding: 0.5rem 1.4rem;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: flex;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px rgba($color: #CFFE00, $alpha: 0.5);
+        @media (max-width: 768px) {
+          height: 40px;
+        }
+
+        @media (max-width: 480px) {
+          height: 35px;
+        }
+      }
     }
 
-  
-  }}}
-  
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      color: $titulos;
+      cursor: pointer;
+      z-index: 20;
 
-.logo-area {
-  display: flex;
-  align-items: center;
-}
+      @media (max-width: 768px) {
+        display: block;
+      }
+    }
 
-.logo {
-  height: 50px;
-  width: auto;
-  object-fit: contain;
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex: 2 1 auto;
+
+      button {
+        background-color: $titulos;
+        color: $fundo;
+        border: none;
+        padding: 0.5rem 1.4rem;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: scale(1.05);
+          box-shadow: 0 0 30px rgba($color: #CFFE00, $alpha: 0.5);
+        }
+      }
+
+      @media (max-width: 768px) {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: $fundo;
+        padding: 1rem;
+        border-top: 1px solid #ccc;
+        z-index: 10;
+
+        &.ativo {
+          display: flex;
+        }
+
+        button {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
 }

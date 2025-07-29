@@ -1,4 +1,3 @@
-import React from 'react';
 import imagemFixa from '../assets/images/perfil.jpeg';
 import '../styles/components/Home.scss';
 import { Link } from 'react-router-dom';

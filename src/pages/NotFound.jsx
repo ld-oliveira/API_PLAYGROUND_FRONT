@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import imagemFixa from '../assets/images/foto-404.png';
 import '../styles/components/NotFound.scss';
