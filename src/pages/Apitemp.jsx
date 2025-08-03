@@ -6,7 +6,7 @@ const Apitemp = () => {
   const [resultado, setResultado] = useState(null);
   const [proximas, setProximas] = useState([]);
 
-  const local = true; // ➜ Altere para false para usar a API online
+  const local = false; // ➜ Altere para false para usar a API online
   const baseURL = local
     ? "http://127.0.0.1:8000/clima"
     : "https://api-playground-back.onrender.com/api";
