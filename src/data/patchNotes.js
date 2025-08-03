@@ -1,9 +1,10 @@
 const patchNotes = [
      
-    
-
-
-
+    {
+        versao: "v1.0.0",
+        data: "03-08-25",
+        conteudo: "Grandes mudanças no back-end, refatoração completa na api de temperatura com reorganização de pastas e codigo para melhorias futuras,"
+    },
 
     {
         versao: "v1.0.0",

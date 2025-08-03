@@ -5,7 +5,7 @@ import imagemFixa from '../assets/images/gengar.webp';
 const Apipoke = () => {
     return (
        <main>
-        <seaction className='seaction-titulo'>
+        <section className='seaction-titulo'>
         <div className='div-titulo-pokemon'>
             <h1 className='titulo-pokemon'>Aqui sera organizador futuramente.</h1>
             <form>
@@ -18,7 +18,7 @@ const Apipoke = () => {
             <button className='bt-pesquisa'type='Submit'>Buscar</button>
             </form>
         </div>
-        </seaction>
+        </section>
 
     <seaction className='seaction-pokemon'>
             <div className='div-dados-pokemon'>

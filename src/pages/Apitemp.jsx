@@ -6,6 +6,11 @@ const Apitemp = () => {
   const [resultado, setResultado] = useState(null);
   const [proximas, setProximas] = useState([]);
 
+  const local = true; // ➜ Altere para false para usar a API online
+  const baseURL = local
+    ? "http://127.0.0.1:8000/clima"
+    : "https://api-playground-back.onrender.com/api";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,20 +27,17 @@ const Apitemp = () => {
       const latitude = dataCoords[0].lat;
       const longitude = dataCoords[0].lon;
 
-      // Chamar clima atual"
-      const response = await fetch(`https://api-playground-back.onrender.com/api/clima/?lat=${latitude}&lon=${longitude}`)
+      const response = await fetch(`${baseURL}/clima/?lat=${latitude}&lon=${longitude}`);
       const dados = await response.json();
 
-      // Buscar previsão para as próximas 6 horas
-      const responseProximas = await fetch(`https://api-playground-back.onrender.com/api/proximas/?lat=${latitude}&lon=${longitude}`)
-
+      const responseProximas = await fetch(`${baseURL}/previsao-horas/?lat=${latitude}&lon=${longitude}`);
       const dadosProximas = await responseProximas.json();
 
-      // Chamar previsão de amanhã
-    const responseAmanha = await fetch(`https://api-playground-back.onrender.com/api/amanha/?lat=${latitude}&lon=${longitude}`)
-    const dadosAmanha = await responseAmanha.json();
+      console.log("dadosProximas recebidos", dadosProximas);
 
-      // Formatar a resposta
+      const responseAmanha = await fetch(`${baseURL}/previsao-dia/?lat=${latitude}&lon=${longitude}`);
+      const dadosAmanha = await responseAmanha.json();
+
       const formatado = dadosProximas.map((hora) => ({
         horario: new Date(hora.time).toLocaleTimeString([], {
           hour: "2-digit",
@@ -48,7 +50,9 @@ const Apitemp = () => {
 
       setResultado({
         atual: dados.data?.values?.temperature ?? "",
-        amanha: dadosAmanha?.values?.temperatureAvg? `${dadosAmanha.values.temperatureAvg}°C`: "Indisponível",
+        amanha: dadosAmanha?.values?.temperatureAvg
+          ? `${dadosAmanha.values.temperatureAvg}°C`
+          : "Indisponível",
       });
     } catch (error) {
       console.error("Erro:", error);
@@ -87,7 +91,7 @@ const Apitemp = () => {
             </ul>
           </div>
           <p>
-            <strong>Media prevista para Amanhã:</strong> {resultado.amanha}
+            <strong>Média prevista para Amanhã:</strong> {resultado.amanha}
           </p>
         </div>
       )}
