@@ -2,6 +2,12 @@ const patchNotes = [
      
     {
         versao: "v1.0.0",
+        data: "09-08-25",
+        conteudo: "modificações no back-end como exclusão de chamadas repetidas e criação de novos endpoints, assim melhorando a performace da pagina de temperaturas, mudança no front para adaptar novos parametros na pagina de temperaturas"
+    },
+
+    {
+        versao: "v1.0.0",
         data: "03-08-25",
         conteudo: "Grandes mudanças no back-end, refatoração completa na api de temperatura com reorganização de pastas e codigo para melhorias futuras,"
     },

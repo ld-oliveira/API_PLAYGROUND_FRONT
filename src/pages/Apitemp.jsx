@@ -6,16 +6,45 @@ const Apitemp = () => {
   const [resultado, setResultado] = useState(null);
   const [proximas, setProximas] = useState([]);
 
-  const local = false; // ➜ Altere para false para usar a API online
+  const modoTeste = false; // ➜ Ative para usar dados mockados e evitar requisições
+  const local = true; // ➜ Altere para false para usar a API online
+
   const baseURL = local
     ? "http://127.0.0.1:8000/clima"
     : "https://api-playground-back.onrender.com/api";
 
+  const dadosFicticios = {
+    atual: "26",
+    amanha: "28",
+    quarenta_oito: "24",
+    setenta_duas: "17",
+    prob_chuva: "30%",
+    visib: "baixa",
+    proximas: [
+      { horario: "09:00", temperatura: "24°C" },
+      { horario: "10:00", temperatura: "25°C" },
+      { horario: "11:00", temperatura: "26°C" },
+      { horario: "12:00", temperatura: "27°C" },
+    ],
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (modoTeste) {
+      setResultado({
+        atual: dadosFicticios.atual,
+        amanha: dadosFicticios.amanha,
+        quarenta_oito: dadosFicticios.quarenta_oito,
+        setenta_duas: dadosFicticios.setenta_duas,
+        prob_chuva: dadosFicticios.prob_chuva,
+        visib: dadosFicticios.visib,
+      });
+      setProximas(dadosFicticios.proximas);
+      return;
+    }
+
     try {
-      // Buscar coordenadas via Nominatim
       const responseCoords = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(lugar)}`);
       const dataCoords = await responseCoords.json();
 
@@ -33,10 +62,14 @@ const Apitemp = () => {
       const responseProximas = await fetch(`${baseURL}/previsao-horas/?lat=${latitude}&lon=${longitude}`);
       const dadosProximas = await responseProximas.json();
 
-      console.log("dadosProximas recebidos", dadosProximas);
-
       const responseAmanha = await fetch(`${baseURL}/previsao-dia/?lat=${latitude}&lon=${longitude}`);
       const dadosAmanha = await responseAmanha.json();
+
+      const responseTermic = await fetch(`${baseURL}/clima/?lat=${latitude}&lon=${longitude}`);
+      const dadosTermic = await responseTermic.json();
+
+      const responseVisib = await fetch(`${baseURL}/clima/?lat=${latitude}&lon=${longitude}`);
+      const dadosVisib = await responseVisib.json();
 
       const formatado = dadosProximas.map((hora) => ({
         horario: new Date(hora.time).toLocaleTimeString([], {
@@ -46,6 +79,14 @@ const Apitemp = () => {
         temperatura: `${hora.values.temperature}°C`,
       }));
 
+      const visib = 
+      dadosVisib?.values?.visibility ?? 
+      dadosVisib?.data?.values?.visibility ??"";
+
+      const tempAparente = 
+      dadosTermic?.values?.temperatureApparent ?? 
+      dadosTermic?.data?.values?.temperatureApparent ??"";
+
       setProximas(formatado);
 
       setResultado({
@@ -53,6 +94,8 @@ const Apitemp = () => {
         amanha: dadosAmanha?.values?.temperatureAvg
           ? `${dadosAmanha.values.temperatureAvg}°C`
           : "Indisponível",
+        termic: tempAparente,
+        visib: visib,
       });
     } catch (error) {
       console.error("Erro:", error);
@@ -61,41 +104,67 @@ const Apitemp = () => {
   };
 
   return (
-    <div className="apitemp">
-      <h1>Veja a temperatura de qualquer lugar aqui</h1>
+    <section>
+      <div className="topo">
+        <div className="apitemp">
+          <h1>Veja a temperatura de qualquer lugar aqui</h1>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="lugar">Digite o nome do lugar que deseja ver:</label>
-        <input
-          type="text"
-          id="lugar"
-          value={lugar}
-          onChange={(e) => setLugar(e.target.value)}
-          placeholder="Ex: São Paulo, Brasil"
-        />
-        <button type="submit">Buscar</button>
-      </form>
-
-      {resultado && (
-        <div className="resultado">
-          <h2>Resultado para: {lugar}</h2>
-          <p>
-            <strong>Temperatura atual:</strong> {resultado.atual}°C
-          </p>
-          <div>
-            <strong>Próximas horas:</strong>
-            <ul>
-              {proximas.map((item, index) => (
-                <li key={index}>{item.horario} - {item.temperatura}</li>
-              ))}
-            </ul>
-          </div>
-          <p>
-            <strong>Média prevista para Amanhã:</strong> {resultado.amanha}
-          </p>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="lugar">Digite o nome do lugar que deseja ver:</label>
+            <input
+              type="text"
+              id="lugar"
+              value={lugar}
+              onChange={(e) => setLugar(e.target.value)}
+              placeholder="Ex: São Paulo, Brasil"
+            />
+            <button type="submit">Buscar</button>
+          </form>
         </div>
-      )}
-    </div>
+
+        {resultado && (
+          <div className="resultado-dia">
+            <h2>Resultado para: {lugar}</h2>
+
+            <div className="infos-horas">
+              <div className="agora">
+                <h4>Informações de agora</h4>
+                <p>Temperatura atual: {resultado.atual}°C</p>
+                <p>Mínima: 22°C</p> {}
+                <p>Máxima: 28°C</p>
+              </div>
+
+              <div className="proximas-horas">
+                {proximas.map((item, index) => (
+                  <div key={index} className="hora">
+                    <span>{item.horario}</span>
+                    <span>{item.temperatura}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="inferior">
+              <div className="vinte-quatro">
+                <p><strong>Média prevista para Amanhã:</strong> {resultado.amanha}</p>
+              </div>
+              <div className="quarenta-oito">
+                <p><strong>Média prevista para daqui 2 dias:</strong> {resultado.quarenta_oito}</p>
+              </div>
+              <div className="setenta-duas">
+                <p><strong>Média prevista para daqui 3 dias:</strong> {resultado.setenta_duas}</p>
+              </div>
+              <div className="outinfo">
+                <p className="texto-outinfo">Outras informações</p>
+                <p className="texto-prob-chuva">Probabilidade de chuva: {resultado.prob_chuva}</p>
+                <p className="texto-visibilidade">Visibilidade: {resultado.visib}</p>
+                <p className="texto-sens-term">Sensação térmica: {resultado.termic}°C</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 };
 

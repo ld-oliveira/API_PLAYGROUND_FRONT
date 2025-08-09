@@ -20,7 +20,7 @@ const Apipoke = () => {
         </div>
         </section>
 
-    <seaction className='seaction-pokemon'>
+    <section className='section-pokemon'>
             <div className='div-dados-pokemon'>
             <h3 className='numero-poke'> Numero na pokedex</h3>
             <p className='retorno-numero'>0000</p>
@@ -48,7 +48,7 @@ const Apipoke = () => {
             </div>
 
         </div>
-       </seaction>
+       </section>
     </main>
     )
 }
