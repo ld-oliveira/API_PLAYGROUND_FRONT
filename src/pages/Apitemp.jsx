@@ -7,7 +7,7 @@ const Apitemp = () => {
   const [proximas, setProximas] = useState([]);
 
   const modoTeste = false; // ➜ Ative para usar dados mockados e evitar requisições
-  const local = true; // ➜ Altere para false para usar a API online
+  const local = false; // ➜ Altere para false para usar a API online
 
   const baseURL = local
     ? "http://127.0.0.1:8000/clima"
