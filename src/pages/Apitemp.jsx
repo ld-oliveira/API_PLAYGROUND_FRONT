@@ -9,9 +9,15 @@ const Apitemp = () => {
   const modoTeste = false; // ➜ Ative para usar dados mockados e evitar requisições
   const local = false; // ➜ Altere para false para usar a API online
 
-  const baseURL = local
-    ? "http://127.0.0.1:8000/clima"
-    : "https://api-playground-back.onrender.com/clima/";
+  const HOST = local
+    ? "http://127.0.0.1:8000"
+    : "https://api-playground-back.onrender.com";
+
+  const URLS = {
+    clima: `${HOST}/clima/clima/`,
+    previsaoHoras: `${HOST}/clima/previsao-horas/`,
+    previsaoDia: `${HOST}/clima/previsao-dia/`,
+  };
 
   const dadosFicticios = {
     atual: "26",
@@ -55,42 +61,34 @@ const Apitemp = () => {
 
       const latitude = dataCoords[0].lat;
       const longitude = dataCoords[0].lon;
+      const qs = `?lat=${latitude}&lon=${longitude}`;
 
-      const response = await fetch(`${baseURL}/clima/?lat=${latitude}&lon=${longitude}`);
-      const dados = await response.json();
+      const [dadosClima, dadosProximas, dadosAmanha] = await Promise.all([
+        fetch(`${URLS.clima}${qs}`).then(r => r.json()),
+        fetch(`${URLS.previsaoHoras}${qs}`).then(r => r.json()),
+        fetch(`${URLS.previsaoDia}${qs}`).then(r => r.json()),
+      ]);
 
-      const responseProximas = await fetch(`${baseURL}/previsao-horas/?lat=${latitude}&lon=${longitude}`);
-      const dadosProximas = await responseProximas.json();
-
-      const responseAmanha = await fetch(`${baseURL}/previsao-dia/?lat=${latitude}&lon=${longitude}`);
-      const dadosAmanha = await responseAmanha.json();
-
-      const responseTermic = await fetch(`${baseURL}/clima/?lat=${latitude}&lon=${longitude}`);
-      const dadosTermic = await responseTermic.json();
-
-      const responseVisib = await fetch(`${baseURL}/clima/?lat=${latitude}&lon=${longitude}`);
-      const dadosVisib = await responseVisib.json();
-
-      const formatado = dadosProximas.map((hora) => ({
+      const formatado = (Array.isArray(dadosProximas) ? dadosProximas : []).map((hora) => ({
         horario: new Date(hora.time).toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
         }),
-        temperatura: `${hora.values.temperature}°C`,
+        temperatura: `${hora.values?.temperature}°C`,
       }));
 
-      const visib = 
-      dadosVisib?.values?.visibility ?? 
-      dadosVisib?.data?.values?.visibility ??"";
+      const visib =
+        dadosClima?.values?.visibility ??
+        dadosClima?.data?.values?.visibility ?? "";
 
-      const tempAparente = 
-      dadosTermic?.values?.temperatureApparent ?? 
-      dadosTermic?.data?.values?.temperatureApparent ??"";
+      const tempAparente =
+        dadosClima?.values?.temperatureApparent ??
+        dadosClima?.data?.values?.temperatureApparent ?? "";
 
       setProximas(formatado);
 
       setResultado({
-        atual: dados.data?.values?.temperature ?? "",
+        atual: dadosClima?.data?.values?.temperature ?? dadosClima?.values?.temperature ?? "",
         amanha: dadosAmanha?.values?.temperatureAvg
           ? `${dadosAmanha.values.temperatureAvg}°C`
           : "Indisponível",
@@ -130,7 +128,7 @@ const Apitemp = () => {
               <div className="agora">
                 <h4>Informações de agora</h4>
                 <p>Temperatura atual: {resultado.atual}°C</p>
-                <p>Mínima: 22°C</p> {}
+                <p>Mínima: 22°C</p>
                 <p>Máxima: 28°C</p>
               </div>
 
