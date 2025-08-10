@@ -11,7 +11,7 @@ const Apitemp = () => {
 
   const baseURL = local
     ? "http://127.0.0.1:8000/clima"
-    : "https://api-playground-back.onrender.com/api";
+    : "https://api-playground-back.onrender.com/clima";
 
   const dadosFicticios = {
     atual: "26",
