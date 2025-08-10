@@ -14,9 +14,9 @@ const Apitemp = () => {
     : "https://api-playground-back.onrender.com";
 
   const URLS = {
-    clima: `${HOST}/clima/clima/`,
-    previsaoHoras: `${HOST}/clima/previsao-horas/`,
-    previsaoDia: `${HOST}/clima/previsao-dia/`,
+    clima: `${HOST}/clima/clima`,
+    previsaoHoras: `${HOST}/clima/previsao-horas`,
+    previsaoDia: `${HOST}/clima/previsao-dia`,
   };
 
   const dadosFicticios = {
