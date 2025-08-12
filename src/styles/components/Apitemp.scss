@@ -94,14 +94,14 @@
         color: #000;
       }
     }
-
+      
     .proximas-horas {
       flex: 2;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      border-left: 1px solid #000;
-      padding-left: 1.5rem;
+      border-left: 2px solid #000;
+      padding-left: 2rem;
 
       .hora {
         display: flex;
@@ -121,11 +121,14 @@
           height: 60%;
           width: 1px;
           background-color: #000;
+
+          
         }
       }
     }
   }
 
+  
   .inferior {
     display: flex;
     flex-wrap: wrap;

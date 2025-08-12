@@ -63,7 +63,7 @@ const Apitemp = () => {
       const longitude = dataCoords[0].lon;
       const qs = `?lat=${latitude}&lon=${longitude}`;
 
-      const [dadosClima, dadosProximas, dadosAmanha] = await Promise.all([
+      const [dadosClima, dadosProximas, dadosDias] = await Promise.all([
         fetch(`${URLS.clima}${qs}`).then(r => r.json()),
         fetch(`${URLS.previsaoHoras}${qs}`).then(r => r.json()),
         fetch(`${URLS.previsaoDia}${qs}`).then(r => r.json()),
@@ -89,12 +89,16 @@ const Apitemp = () => {
 
       setResultado({
         atual: dadosClima?.data?.values?.temperature ?? dadosClima?.values?.temperature ?? "",
-        amanha: dadosAmanha?.values?.temperatureAvg
-          ? `${dadosAmanha.values.temperatureAvg}°C`
-          : "Indisponível",
+
+        amanha: dadosDias?.amanha ?? null,
+        depois_de_amanha: dadosDias?.depois_de_amanha ?? null,
+        terceiro_dia: dadosDias?.terceiro_dia ?? null,
+
         termic: tempAparente,
         visib: visib,
-      });
+});
+
+
     } catch (error) {
       console.error("Erro:", error);
       alert("Erro ao buscar informações.");
@@ -126,13 +130,14 @@ const Apitemp = () => {
 
             <div className="infos-horas">
               <div className="agora">
-                <h4>Informações de agora</h4>
+                <h4 className="h4-agora">Informações de agora</h4>
                 <p>Temperatura atual: {resultado.atual}°C</p>
                 <p>Mínima: 22°C</p>
                 <p>Máxima: 28°C</p>
               </div>
 
               <div className="proximas-horas">
+                <h4 className="h4-horas">proximas horas</h4>
                 {proximas.map((item, index) => (
                   <div key={index} className="hora">
                     <span>{item.horario}</span>
@@ -144,20 +149,26 @@ const Apitemp = () => {
 
             <div className="inferior">
               <div className="vinte-quatro">
-                <p><strong>Média prevista para Amanhã:</strong> {resultado.amanha}</p>
+                <p><strong>Média prevista para Amanhã:</strong> {resultado.amanha?.avg}°C</p>
+                <p>Minima: {resultado.amanha?.min}°C</p>
+                <p>Maxima: {resultado.amanha?.max}°C</p>
+                <p>Visibilidade: {resultado.amanha?.visib} km</p>
               </div>
+
               <div className="quarenta-oito">
-                <p><strong>Média prevista para daqui 2 dias:</strong> {resultado.quarenta_oito}</p>
+                <p><strong>Média prevista para daqui 2 dias:</strong> {resultado.depois_de_amanha?.avg}°C</p>
+                <p>Minima: {resultado.depois_de_amanha?.min}°C</p>
+                <p>Maxima: {resultado.depois_de_amanha?.max}°C</p>
+                <p>Visibilidade: {resultado.depois_de_amanha?.visib} km</p>
               </div>
+
               <div className="setenta-duas">
-                <p><strong>Média prevista para daqui 3 dias:</strong> {resultado.setenta_duas}</p>
+                <p><strong>Média prevista para daqui 3 dias:</strong> {resultado.terceiro_dia?.avg}°C</p>
+                <p>Minima: {resultado.terceiro_dia?.min}°C</p>
+                <p>Maxima: {resultado.terceiro_dia?.max}°C</p>
+                <p>Visibilidade: {resultado.terceiro_dia?.visib} km</p>
               </div>
-              <div className="outinfo">
-                <p className="texto-outinfo">Outras informações</p>
-                <p className="texto-prob-chuva">Probabilidade de chuva: {resultado.prob_chuva}</p>
-                <p className="texto-visibilidade">Visibilidade: {resultado.visib}</p>
-                <p className="texto-sens-term">Sensação térmica: {resultado.termic}°C</p>
-              </div>
+
             </div>
           </div>
         )}
