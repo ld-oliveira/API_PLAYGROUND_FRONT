@@ -15,12 +15,13 @@ const Header = () => {
       <nav>
         <div className={`nav-buttons ${menuAberto ? 'ativo' : ''}`}>
         <Link to="/" onClick={() => setMenuAberto(false)}><button>Home</button></Link>        
-        <Link to="/ApiPoke" onClick={() => setMenuAberto(false)}><button>Pokedex</button></Link>
-        <Link to="/API 3" onClick={() => setMenuAberto(false)}><button>API 3</button></Link>
-        <Link to="/API 4" onClick={() => setMenuAberto(false)}><button>API 4</button></Link>
+        <Link to="/LoginPage" onClick={() => setMenuAberto(false)}><button>Login</button></Link>
+        <Link to="/CadPage" onClick={() => setMenuAberto(false)}><button>Cadastro</button></Link>
         <Link to="/apitemp" onClick={() => setMenuAberto(false)}><button>Temperatura</button></Link>
+        <Link to="/ApiPoke" onClick={() => setMenuAberto(false)}><button>Pokedex</button></Link>
         <Link to="/Patchnotes" onClick={() => setMenuAberto(false)}><button>Patch Notes</button></Link>
         <Link to="/contato" onClick={() => setMenuAberto(false)}><button>Sobre mim</button></Link>
+        
         </div>
 
 

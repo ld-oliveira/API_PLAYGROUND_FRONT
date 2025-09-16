@@ -1,0 +1,65 @@
+@use '../base/variables' as *;
+
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: $fundo;
+}
+
+.register-form {
+  background: $titulos;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 300px;
+
+  h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: .5rem;
+    }
+
+    input {
+      width: 100%;
+      padding: .5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: .75rem;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover {
+      background: #333;
+    }
+  }
+}
+
+.msg-sucesso {
+  color: green;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.msg-erro {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

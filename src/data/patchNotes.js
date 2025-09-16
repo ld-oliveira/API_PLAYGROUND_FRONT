@@ -1,13 +1,19 @@
 const patchNotes = [
-     
+
+     {
+        versao: "v1.1.0",
+        data: "16-09-25",
+        conteudo: "Depois de mais de um mês voltei a trabalhar aqui, adicionei a pagina de cadastro e de login, cadastro ja funcionando, adicionei uma nota na pag de temp, pois está com um problema na primeira requisição, mas funcionando."
+    },
+    
     {
-        versao: "v1.0.0",
+        versao: "v1.0.2",
         data: "09-08-25",
         conteudo: "modificações no back-end como exclusão de chamadas repetidas e criação de novos endpoints, assim melhorando a performace da pagina de temperaturas, mudança no front para adaptar novos parametros na pagina de temperaturas"
     },
 
     {
-        versao: "v1.0.0",
+        versao: "v1.0.1",
         data: "03-08-25",
         conteudo: "Grandes mudanças no back-end, refatoração completa na api de temperatura com reorganização de pastas e codigo para melhorias futuras,"
     },

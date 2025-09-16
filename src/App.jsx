@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route,} from 'react-router-dom';
 
 import Home from './pages/Home';
@@ -11,6 +10,8 @@ import Patchnotes from './pages/Patchnotes';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './styles/global.scss';
+import LoginPage from './pages/LoginPage';
+import CadPage from './pages/CadPage';
 
 
 
@@ -26,6 +27,8 @@ function App() {
             <Route path="/Apitemp" element={<Apitempo />} />
             <Route path="/Apipoke" element={<Apipoke/>}/>
             <Route path="/Patchnotes" element={<Patchnotes/>}/>
+            <Route path="/LoginPage" element={<LoginPage/>}/>
+            <Route path="/CadPage" element={<CadPage/>}/>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

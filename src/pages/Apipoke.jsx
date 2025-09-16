@@ -7,7 +7,7 @@ const Apipoke = () => {
        <main>
         <section className='seaction-titulo'>
         <div className='div-titulo-pokemon'>
-            <h1 className='titulo-pokemon'>Aqui sera organizador futuramente.</h1>
+            <h1 className='titulo-pokemon'>Essa pagina eu ainda não trabalhei, apenas visual de como ficará.</h1>
             <form>
             <label htmlFor='Nome-do-pokemon'>Digite o nome do pokemon:</label>
             <input 
