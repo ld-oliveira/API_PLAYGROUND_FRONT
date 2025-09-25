@@ -4,7 +4,7 @@ import '../styles/components/Cad.scss';
 function RegisterPage() {
   const handleRegister = async (formData) => {
     try {
-      const response = await fetch("http://localhost:8000/cadastro/", {
+      const response = await fetch("https://api-playground-back.onrender.com/users/cadastro/", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",

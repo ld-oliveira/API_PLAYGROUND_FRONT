@@ -3,7 +3,7 @@ const patchNotes = [
      {
         versao: "v1.1.0",
         data: "16-09-25",
-        conteudo: "Depois de mais de um mês voltei a trabalhar aqui, adicionei a pagina de cadastro e de login, cadastro ja funcionando, adicionei uma nota na pag de temp, pois está com um problema na primeira requisição, mas funcionando."
+        conteudo: "Após mais de um mês, retomei o desenvolvimento do projeto. Adicionei as páginas de cadastro e login. Incluí uma nota na página de temperatura, pois há um problema na primeira requisição — apesar disso, a funcionalidade continua operando normalmente, apenas a primeira requisição leva um tempo."
     },
     
     {
