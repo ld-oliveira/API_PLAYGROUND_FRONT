@@ -45,7 +45,7 @@ function RegisterForm() {
 
       if (response.ok) {
         setMensagem({ texto: "Cadastro realizado com sucesso!", tipo: "sucesso" });
-        setTimeout(() => navigate("/login"), 2000); // redireciona após 2s
+        setTimeout(() => navigate("/LoginPage"), 2000); // redireciona após 2s
       } else {
         setMensagem({ texto: data.erro || "Erro no cadastro!", tipo: "erro" });
       }

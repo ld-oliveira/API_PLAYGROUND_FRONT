@@ -1,0 +1,72 @@
+@use '../base/variables' as *;
+
+.pet-list-page {
+  min-height: 100vh;
+  background: $fundo;
+  padding: 2rem;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: $titulos;
+  }
+
+  .empty-message,
+  .error-message,
+  .loading-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: white;
+    margin-top: 2rem;
+  }
+
+  .pets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .pet-card {
+    background: $titulos;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      background: black;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: black;
+    }
+
+    p {
+      margin: 0.3rem 0;
+      font-size: 0.95rem;
+      color: #111;
+    }
+
+    .pet-comment {
+      background: black;
+      color: $titulos;
+      margin-top: 1rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+  }
+}

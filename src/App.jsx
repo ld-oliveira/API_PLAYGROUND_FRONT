@@ -12,6 +12,8 @@ import Footer from './components/Footer';
 import './styles/global.scss';
 import LoginPage from './pages/LoginPage';
 import CadPage from './pages/CadPage';
+import PetList from './pages/petList';
+import AddPet from './pages/addPet';
 
 
 
@@ -29,6 +31,8 @@ function App() {
             <Route path="/Patchnotes" element={<Patchnotes/>}/>
             <Route path="/LoginPage" element={<LoginPage/>}/>
             <Route path="/CadPage" element={<CadPage/>}/>
+            <Route path="/petList" element={<PetList/>}/>
+            <Route path="/AddPet" element={<AddPet/>}/>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
