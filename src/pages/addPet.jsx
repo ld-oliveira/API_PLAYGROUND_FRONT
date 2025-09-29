@@ -17,6 +17,14 @@ function getCookie(name) {
   return cookieValue;
 }
 
+// garante que o backend envie o cookie 'csrftoken'
+async function ensureCsrf(API_BASE) {
+  await fetch(`${API_BASE}/users/csrf/`, {
+    method: "GET",
+    credentials: "include",
+  });
+}
+
 function AddPet() {
   const [nome, setNome] = useState("");
   const [idade, setIdade] = useState("");
@@ -38,17 +46,29 @@ function AddPet() {
     }
 
     try {
+      // 1) garante que o cookie 'csrftoken' foi setado pelo backend
+      await ensureCsrf(API_BASE);
+
+      // 2) pega o valor do cookie do navegador
+      const csrftoken = getCookie("csrftoken");
+
+      // 3) faz o POST já com o CSRF + sessionid
       const response = await fetch(`${API_BASE}/pet/animais/`, {
         method: "POST",
-        credentials: "include",
+        credentials: "include", // manda sessionid + csrftoken
         headers: {
-          "X-CSRFToken": getCookie("csrftoken"),
+          "X-CSRFToken": csrftoken,
         },
-        body: formData,
+        body: formData, // não defina Content-Type, o navegador faz isso
       });
 
       if (!response.ok) {
-        throw new Error("Erro ao cadastrar animal");
+        let detail = "Erro ao cadastrar animal";
+        try {
+          const data = await response.json();
+          detail = data.detail || data.error || detail;
+        } catch (_) {}
+        throw new Error(detail);
       }
 
       setMensagem("Animal cadastrado com sucesso!");
