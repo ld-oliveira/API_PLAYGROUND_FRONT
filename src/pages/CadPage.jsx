@@ -2,27 +2,13 @@ import { useNavigate } from "react-router-dom";
 import CadForm from "../components/CadForm";
 import "../styles/components/Cad.scss";
 
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === name + "=") {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}
-
-// garante que o backend envie/atualize o cookie 'csrftoken'
-async function ensureCsrf(API_BASE) {
-  await fetch(`${API_BASE}/users/csrf/`, {
-    method: "GET",
+// busca o token no endpoint do backend
+async function getCsrfToken(API_BASE) {
+  const res = await fetch(`${API_BASE}/users/csrf/`, {
     credentials: "include",
   });
+  const data = await res.json();
+  return data.csrfToken;
 }
 
 function CadPage() {
@@ -31,21 +17,20 @@ function CadPage() {
 
   const handleRegister = async (formData) => {
     try {
-     await ensureCsrf(API_BASE);
-      const csrftoken = getCookie("csrftoken");
+      const csrftoken = await getCsrfToken(API_BASE);
+
       const response = await fetch(`${API_BASE}/users/cadastro/`, {
         method: "POST",
-        credentials: "include",
+        credentials: "include", // mantém cookies de sessão
         headers: {
           "Content-Type": "application/json",
           "X-CSRFToken": csrftoken,
         },
-        body: new URLSearchParams(formData),
+        body: JSON.stringify(formData), // agora bate com o header
       });
 
       if (response.ok) {
         alert("Cadastro realizado com sucesso!");
-        
         setTimeout(() => navigate("/LoginPage"), 2000);
       } else {
         const data = await response.json().catch(() => ({}));
