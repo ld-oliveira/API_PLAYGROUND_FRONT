@@ -37,7 +37,7 @@ function CadPage() {
         method: "POST",
         credentials: "include",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
           "X-CSRFToken": csrftoken,
         },
         body: new URLSearchParams(formData),
