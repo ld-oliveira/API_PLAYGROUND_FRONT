@@ -1,7 +1,7 @@
-import RegisterForm from "../components/CadForm";
+import { useNavigate } from "react-router-dom";
+import CadForm from "../components/CadForm";
 import "../styles/components/Cad.scss";
 
-// helper para ler o cookie CSRF
 function getCookie(name) {
   let cookieValue = null;
   if (document.cookie && document.cookie !== "") {
@@ -25,18 +25,14 @@ async function ensureCsrf(API_BASE) {
   });
 }
 
-function RegisterPage() {
+function CadPage() {
   const API_BASE = "https://api-playground-back.onrender.com";
+  const navigate = useNavigate();
 
   const handleRegister = async (formData) => {
     try {
-      // 1) garante o cookie csrftoken
-      await ensureCsrf(API_BASE);
-
-      // 2) lê o valor do cookie
+     await ensureCsrf(API_BASE);
       const csrftoken = getCookie("csrftoken");
-
-      // 3) envia o POST com CSRF
       const response = await fetch(`${API_BASE}/users/cadastro/`, {
         method: "POST",
         credentials: "include",
@@ -49,6 +45,8 @@ function RegisterPage() {
 
       if (response.ok) {
         alert("Cadastro realizado com sucesso!");
+        
+        setTimeout(() => navigate("/LoginPage"), 2000);
       } else {
         const data = await response.json().catch(() => ({}));
         alert(data.error || "Erro no cadastro. Verifique os dados.");
@@ -61,9 +59,9 @@ function RegisterPage() {
 
   return (
     <div className="register-page">
-      <RegisterForm onSubmit={handleRegister} />
+      <CadForm onSubmit={handleRegister} />
     </div>
   );
 }
 
-export default RegisterPage;
+export default CadPage;

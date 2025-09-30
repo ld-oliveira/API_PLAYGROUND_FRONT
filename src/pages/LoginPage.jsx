@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
 import "../styles/components/Login.scss";
 
@@ -29,22 +30,18 @@ async function ensureCsrf(API_BASE) {
 function LoginPage() {
   const [error, setError] = useState(null);
   const API_BASE = "https://api-playground-back.onrender.com";
+  const navigate = useNavigate();
 
   const handleLogin = async (formData) => {
     try {
-      // 1) garante que o navegador tem o cookie 'csrftoken'
       await ensureCsrf(API_BASE);
-
-      // 2) pega o valor do cookie
       const csrftoken = getCookie("csrftoken");
-
-      // 3) faz o POST com o token no header
       const response = await fetch(`${API_BASE}/users/login/`, {
         method: "POST",
-        credentials: "include", // envia cookies de sessão
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          "X-CSRFToken": csrftoken, // csrf obrigatório
+          "X-CSRFToken": csrftoken, 
         },
         body: JSON.stringify({
           nome_login: formData.username,
@@ -52,15 +49,20 @@ function LoginPage() {
         }),
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
 
       if (response.ok && data.status === "ok") {
         alert("Login realizado com sucesso!");
         console.log("Usuário logado:", data);
         setError(null);
+
+        // guarda no localStorage
         localStorage.setItem("user", JSON.stringify(data));
+
+        // redireciona após 1s
+        setTimeout(() => navigate("/"), 1000);
       } else {
-        setError(data.error || "Erro no login");
+        setError(data.error || "Usuário ou senha inválidos.");
       }
     } catch (err) {
       console.error("Erro na requisição:", err);

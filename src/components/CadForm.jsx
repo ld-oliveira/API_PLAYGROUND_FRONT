@@ -1,27 +1,26 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-function RegisterForm() {
+function CadForm({ onSubmit }) {
   const [formData, setFormData] = useState({
     nome_cad: "",
     email_cad: "",
     senha_1: "",
-    senha_2: ""
+    senha_2: "",
   });
 
-  const [mensagem, setMensagem] = useState({ texto: "", tipo: "" }); 
-  const navigate = useNavigate();
+  const [mensagem, setMensagem] = useState({ texto: "", tipo: "" });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
+    // validações locais antes de enviar
     if (!formData.nome_cad || !formData.email_cad || !formData.senha_1 || !formData.senha_2) {
       setMensagem({ texto: "Preencha todos os campos.", tipo: "erro" });
       return;
@@ -32,27 +31,8 @@ function RegisterForm() {
       return;
     }
 
-    try {
-      const response = await fetch("https://api-playground-back.onrender.com/users/cadastro/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setMensagem({ texto: "Cadastro realizado com sucesso!", tipo: "sucesso" });
-        setTimeout(() => navigate("/LoginPage"), 2000); // redireciona após 2s
-      } else {
-        setMensagem({ texto: data.erro || "Erro no cadastro!", tipo: "erro" });
-      }
-    } catch (error) {
-      console.error("Erro ao conectar com o backend:", error);
-      setMensagem({ texto: "Não foi possível conectar com o servidor.", tipo: "erro" });
-    }
+    // chama o onSubmit do RegisterPage
+    onSubmit(formData);
   };
 
   return (
@@ -114,4 +94,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default CadForm;
