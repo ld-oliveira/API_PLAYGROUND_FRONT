@@ -21,10 +21,13 @@ function getCookie(name) {
 
 // garante que o backend envie/atualize o cookie 'csrftoken'
 async function ensureCsrf(API_BASE) {
-  await fetch(`${API_BASE}/users/csrf/`, {
+  const res = await fetch(`${API_BASE}/users/csrf/`, {
     method: "GET",
-    credentials: "include",
+    credentials: "include", // cookies via cross-site
   });
+  if (!res.ok) {
+    console.error("Falha ao garantir CSRF:", res.status);
+  }
 }
 
 function LoginPage() {
@@ -34,14 +37,21 @@ function LoginPage() {
 
   const handleLogin = async (formData) => {
     try {
+      // garante o cookie atualizado
       await ensureCsrf(API_BASE);
+
       const csrftoken = getCookie("csrftoken");
+      if (!csrftoken) {
+        setError("CSRF token não encontrado. Tente novamente.");
+        return;
+      }
+
       const response = await fetch(`${API_BASE}/users/login/`, {
         method: "POST",
-        credentials: "include",
+        credentials: "include", // mantém cookies de sessão
         headers: {
           "Content-Type": "application/json",
-          "X-CSRFToken": csrftoken, 
+          "X-CSRFToken": csrftoken, // obrigatório no Django
         },
         body: JSON.stringify({
           nome_login: formData.username,
@@ -56,7 +66,6 @@ function LoginPage() {
         console.log("Usuário logado:", data);
         setError(null);
 
-        // guarda no localStorage
         localStorage.setItem("user", JSON.stringify(data));
 
         // redireciona após 1s
