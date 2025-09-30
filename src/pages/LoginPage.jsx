@@ -1,47 +1,30 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
 import "../styles/components/Login.scss";
 
-// helper para ler o cookie CSRF
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === name + "=") {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}
-
-// garante que o backend envie/atualize o cookie 'csrftoken'
-async function ensureCsrf(API_BASE) {
-  await fetch(`${API_BASE}/users/csrf/`, {
-    method: "GET",
+// busca o token no endpoint do backend
+async function getCsrfToken(API_BASE) {
+  const res = await fetch(`${API_BASE}/users/csrf/`, {
     credentials: "include",
   });
+  const data = await res.json();
+  return data.csrfToken;
 }
 
 function LoginPage() {
-  const [error, setError] = useState(null);
   const API_BASE = "https://api-playground-back.onrender.com";
   const navigate = useNavigate();
 
   const handleLogin = async (formData) => {
     try {
-      await ensureCsrf(API_BASE);
-      const csrftoken = getCookie("csrftoken");
+      const csrftoken = await getCsrfToken(API_BASE);
+
       const response = await fetch(`${API_BASE}/users/login/`, {
         method: "POST",
-        credentials: "include",
+        credentials: "include", // mantém cookies de sessão
         headers: {
           "Content-Type": "application/json",
-          "X-CSRFToken": csrftoken, 
+          "X-CSRFToken": csrftoken,
         },
         body: JSON.stringify({
           nome_login: formData.username,
@@ -53,27 +36,25 @@ function LoginPage() {
 
       if (response.ok && data.status === "ok") {
         alert("Login realizado com sucesso!");
-        console.log("Usuário logado:", data);
-        setError(null);
 
-        // guarda no localStorage
-        localStorage.setItem("user", JSON.stringify(data));
+        // Se backend retornar token, salva
+        if (data.token) {
+          localStorage.setItem("authToken", data.token);
+        }
 
-        // redireciona após 1s
-        setTimeout(() => navigate("/"), 1000);
+        setTimeout(() => navigate("/"), 2000);
       } else {
-        setError(data.error || "Usuário ou senha inválidos.");
+        alert(data.error || "Usuário ou senha inválidos.");
       }
-    } catch (err) {
-      console.error("Erro na requisição:", err);
-      setError("Erro de conexão com o servidor");
+    } catch (error) {
+      console.error("Erro:", error);
+      alert("Erro ao conectar com o servidor.");
     }
   };
 
   return (
     <div className="login-page">
       <LoginForm onSubmit={handleLogin} />
-      {error && <p className="error-message">{error}</p>}
     </div>
   );
 }
