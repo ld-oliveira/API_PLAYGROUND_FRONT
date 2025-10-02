@@ -1,28 +1,13 @@
 import { useState } from "react";
 import "../styles/components/Addpet.scss";
 
-// helper para ler o cookie CSRF do navegador
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === (name + "=")) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}
-
-// garante que o backend envie o cookie 'csrftoken'
-async function ensureCsrf(API_BASE) {
-  await fetch(`${API_BASE}/users/csrf/`, {
-    method: "GET",
+// busca o token no endpoint do backend
+async function getCsrfToken(API_BASE) {
+  const res = await fetch(`${API_BASE}/users/csrf/`, {
     credentials: "include",
   });
+  const data = await res.json();
+  return data.csrfToken;
 }
 
 function AddPet() {
@@ -46,13 +31,8 @@ function AddPet() {
     }
 
     try {
-      // 1) garante que o cookie 'csrftoken' foi setado pelo backend
-      await ensureCsrf(API_BASE);
+      const csrftoken = await getCsrfToken(API_BASE);
 
-      // 2) pega o valor do cookie do navegador
-      const csrftoken = getCookie("csrftoken");
-
-      // 3) faz o POST já com o CSRF + sessionid
       const response = await fetch(`${API_BASE}/pet/animais/`, {
         method: "POST",
         credentials: "include", // manda sessionid + csrftoken
