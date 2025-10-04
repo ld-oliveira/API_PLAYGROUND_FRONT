@@ -72,7 +72,7 @@ function PetList() {
                 <strong>Idade:</strong> {pet.idade}
               </p>
               <p>
-                <strong>Dono:</strong> {pet.usuario?.username || "Anônimo"}
+              <strong>Dono:</strong> {pet.usuario?.username || "Anônimo"}
               </p>
               <div className="pet-comment">
                 {pet.descricao || "Sem descrição"}
