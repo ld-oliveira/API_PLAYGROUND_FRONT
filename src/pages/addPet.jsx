@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "../styles/components/Addpet.scss";
 
-// busca o token no endpoint do backend
 async function getCsrfToken(API_BASE) {
   const res = await fetch(`${API_BASE}/users/csrf/`, {
     credentials: "include",
@@ -27,7 +26,7 @@ function AddPet() {
     formData.append("idade", idade);
     formData.append("descricao", descricao);
     if (foto) {
-      formData.append("foto", foto);
+      formData.append("foto", foto, foto.name);
     }
 
     try {
@@ -35,11 +34,11 @@ function AddPet() {
 
       const response = await fetch(`${API_BASE}/pet/animais/`, {
         method: "POST",
-        credentials: "include", // manda sessionid + csrftoken
+        credentials: "include",
         headers: {
           "X-CSRFToken": csrftoken,
         },
-        body: formData, // não defina Content-Type, o navegador faz isso
+        body: formData,
       });
 
       if (!response.ok) {
@@ -74,8 +73,7 @@ function AddPet() {
             {mensagem}
           </p>
         )}
-
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="form-group">
             <label>Nome ou apelido:</label>
             <input
