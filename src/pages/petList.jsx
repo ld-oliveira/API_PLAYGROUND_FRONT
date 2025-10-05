@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/components/Petlist.scss";
 
-// busca o token no endpoint do backend
 async function getCsrfToken(API_BASE) {
   const res = await fetch(`${API_BASE}/users/csrf/`, {
     credentials: "include",
@@ -24,9 +23,9 @@ function PetList() {
 
         const response = await fetch(`${API_BASE}/pet/animais/`, {
           method: "GET",
-          credentials: "include", // mantém cookies/sessão
+          credentials: "include",
           headers: {
-            "X-CSRFToken": csrftoken, // mantém padrão igual aos outros
+            "X-CSRFToken": csrftoken,
           },
         });
 
@@ -46,33 +45,27 @@ function PetList() {
     fetchPets();
   }, [API_BASE]);
 
-  if (loading) {
-    return <p>Carregando animais...</p>;
-  }
-
-  if (error) {
-    return <p>Erro: {error}</p>;
-  }
+  if (loading) return <p>Carregando animais...</p>;
+  if (error) return <p>Erro: {error}</p>;
 
   return (
     <div className="pet-list-page">
       <h1>Lista de Animais</h1>
 
-      {!loading && !error && pets.length === 0 && (
+      {pets.length === 0 ? (
         <p className="empty-message">Nenhum animal cadastrado ainda.</p>
-      )}
-
-      {!loading && !error && pets.length > 0 && (
+      ) : (
         <div className="pets-grid">
           {pets.map((pet) => (
             <div className="pet-card" key={pet.id}>
-              <img src={pet.foto} alt={pet.nome} />
+              {}
+              <img src={pet.foto?.startsWith("http") ? pet.foto : `${API_BASE}${pet.foto}`} alt={pet.nome} />
               <h2>{pet.nome}</h2>
               <p>
                 <strong>Idade:</strong> {pet.idade}
               </p>
               <p>
-              <strong>Dono:</strong> {pet.usuario?.username || "Anônimo"}
+                <strong>Dono:</strong> {pet.usuario?.username || "Anônimo"}
               </p>
               <div className="pet-comment">
                 {pet.descricao || "Sem descrição"}
