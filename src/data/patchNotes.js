@@ -1,5 +1,11 @@
 const patchNotes = [
 
+    {
+        versao: "v1.2.0",
+        data: "16-09-25",
+        conteudo: "Adicionado pagina de cadastro, de login, de adicionar um pet e a petlist, foram semanas bem trabalhosas com muitos problemas em autenticação, cors, e diversas trocas de local de armazenamento de imagens."
+    },
+
      {
         versao: "v1.1.0",
         data: "16-09-25",

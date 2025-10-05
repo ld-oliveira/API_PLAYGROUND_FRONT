@@ -19,11 +19,10 @@ const Header = () => {
         <Link to="/CadPage" onClick={() => setMenuAberto(false)}><button>Cadastro</button></Link>
         <Link to="/apitemp" onClick={() => setMenuAberto(false)}><button>Temperatura</button></Link>
         <Link to="/ApiPoke" onClick={() => setMenuAberto(false)}><button>Pokedex</button></Link>
-        <Link to="/Patchnotes" onClick={() => setMenuAberto(false)}><button>Patch Notes</button></Link>
         <Link to="/contato" onClick={() => setMenuAberto(false)}><button>Sobre mim</button></Link>
         <Link to="/petList" onClick={() => setMenuAberto(false)}><button>Petlist</button></Link>
         <Link to="/addPet" onClick={() => setMenuAberto(false)}><button>addPet</button></Link>
-        
+        <Link to="/Patchnotes" onClick={() => setMenuAberto(false)}><button>Patch Notes</button></Link>
         </div>
 
 
