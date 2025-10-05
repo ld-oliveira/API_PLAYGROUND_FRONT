@@ -66,7 +66,7 @@ function PetList() {
         <div className="pets-grid">
           {pets.map((pet) => (
             <div className="pet-card" key={pet.id}>
-              {pet.foto && <img src={pet.foto} alt={pet.nome} />}
+              <img src={pet.foto} alt={pet.nome} />
               <h2>{pet.nome}</h2>
               <p>
                 <strong>Idade:</strong> {pet.idade}
