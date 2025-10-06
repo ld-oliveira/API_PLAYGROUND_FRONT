@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // ⬅️ importado para atualizar o estado global
 import LoginForm from "../components/LoginForm";
 import "../styles/components/Login.scss";
 
@@ -14,6 +15,7 @@ async function getCsrfToken(API_BASE) {
 function LoginPage() {
   const API_BASE = "https://api-playground-back.onrender.com";
   const navigate = useNavigate();
+  const { login } = useAuth(); // ⬅️ usado para atualizar o contexto após login
 
   const handleLogin = async (formData) => {
     try {
@@ -21,7 +23,7 @@ function LoginPage() {
 
       const response = await fetch(`${API_BASE}/users/login/`, {
         method: "POST",
-        credentials: "include", // mantém cookies de sessão
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
           "X-CSRFToken": csrftoken,
@@ -37,9 +39,9 @@ function LoginPage() {
       if (response.ok && data.status === "ok") {
         alert("Login realizado com sucesso!");
 
-        // Se backend retornar token, salva
         if (data.token) {
           localStorage.setItem("authToken", data.token);
+          login(data.token, data.user); // ⬅️ atualiza o estado global de autenticação
         }
 
         setTimeout(() => navigate("/"), 2000);
