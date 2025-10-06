@@ -13,10 +13,10 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = useCallback((token, userData = null) => {
-    localStorage.setItem(TOKEN_KEY, token);
-    setIsAuthenticated(true);
+    if (token) localStorage.setItem("token", token); // ou sua chave atual
+    setIsAuthenticated(true);                        // <- sempre true no sucesso
     if (userData) setUser(userData);
-  }, []);
+}, []);
 
   const logout = useCallback(() => {
     localStorage.removeItem(TOKEN_KEY);

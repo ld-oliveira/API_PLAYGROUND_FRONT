@@ -39,10 +39,9 @@ function LoginPage() {
       if (response.ok && data.status === "ok") {
         alert("Login realizado com sucesso!");
 
-        if (data.token) {
-          localStorage.setItem("authToken", data.token);
-          login(data.token, data.user); // ⬅️ atualiza o estado global de autenticação
-        }
+        if (data.token) localStorage.setItem("authToken", data.token);
+          login(data.token, data.user); // chama mesmo sem token (cookie de sessão)
+
 
         setTimeout(() => navigate("/"), 2000);
       } else {
