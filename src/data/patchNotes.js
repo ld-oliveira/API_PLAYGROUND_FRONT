@@ -1,6 +1,12 @@
 const patchNotes = [
 
     {
+        versao: "v1.2.1",
+        data: "07-10-25",
+        conteudo: "função de adicionar pets apenas para cadastrados concluida, petlist funcionando devidamente e atualização do header para sumir/aparecer opção de usuarios autenticados e não autenticados"
+    },
+
+    {
         versao: "v1.2.0",
         data: "05-10-25",
         conteudo: "Adicionado pagina de cadastro, login, adicionar um pet e a petlist, foram semanas bem trabalhosas com muitos problemas em autenticação, cors, e diversas trocas de local de armazenamento de imagens."
