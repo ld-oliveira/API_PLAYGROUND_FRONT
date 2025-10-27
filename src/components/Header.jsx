@@ -23,25 +23,30 @@ const Header = () => {
     <header className="header">
       <nav>
         <div className={`nav-buttons ${menuAberto ? "ativo" : ""}`}>
-          <Link to="/" onClick={() => setMenuAberto(false)}><button>Home</button></Link>
-          <Link to="/apitemp" onClick={() => setMenuAberto(false)}><button>Temperatura</button></Link>
-          <Link to="/petList" onClick={() => setMenuAberto(false)}><button>Petlist</button></Link>
-          {/* Pokedex oculta temporariamente */}
-          {/* <Link to="/ApiPoke" onClick={() => setMenuAberto(false)}><button>Pokedex</button></Link> */}
           {!isAuthenticated && (
             <>
-              <Link to="/LoginPage" onClick={() => setMenuAberto(false)}><button>Login</button></Link>
+              <Link to="/" onClick={() => setMenuAberto(false)}><button>Home</button></Link>
               <Link to="/CadPage" onClick={() => setMenuAberto(false)}><button>Cadastro</button></Link>
+              <Link to="/LoginPage" onClick={() => setMenuAberto(false)}><button>Login</button></Link>
+              <Link to="/apitemp" onClick={() => setMenuAberto(false)}><button>Temperatura</button></Link>
+              <Link to="/petList" onClick={() => setMenuAberto(false)}><button>Petlist</button></Link>
+              <Link to="/Patchnotes" onClick={() => setMenuAberto(false)}><button>Patch Notes</button></Link>
+              <Link to="/contato" onClick={() => setMenuAberto(false)}><button>Sobre mim</button></Link>
             </>
           )}
+          
           {isAuthenticated && (
             <>
+              <Link to="/" onClick={() => setMenuAberto(false)}><button>Home</button></Link>
+              <Link to="/apitemp" onClick={() => setMenuAberto(false)}><button>Temperatura</button></Link>
               <Link to="/addPet" onClick={() => setMenuAberto(false)}><button>addPet</button></Link>
+              <Link to="/petList" onClick={() => setMenuAberto(false)}><button>Petlist</button></Link>
+              <Link to="/contato" onClick={() => setMenuAberto(false)}><button>Sobre mim</button></Link>
+              <Link to="/Patchnotes" onClick={() => setMenuAberto(false)}><button>Patch Notes</button></Link>
               <button onClick={handleLogout}>Sair</button>
             </>
           )}
-          <Link to="/Patchnotes" onClick={() => setMenuAberto(false)}><button>Patch Notes</button></Link>
-          <Link to="/contato" onClick={() => setMenuAberto(false)}><button>Sobre mim</button></Link>
+          
         </div>
 
         <div className="hamburger" onClick={toggleMenu}>☰</div>

@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import Contato from "./pages/Contato";
 import NotFound from "./pages/NotFound";
 import Apitempo from "./pages/Apitemp";
-import Apipoke from "./pages/Apipoke";
 import Patchnotes from "./pages/Patchnotes";
 
 import Header from "./components/Header";
@@ -39,7 +38,6 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/contato" element={<Contato />} />
               <Route path="/Apitemp" element={<Apitempo />} />
-              <Route path="/Apipoke" element={<Apipoke />} />
               <Route path="/Patchnotes" element={<Patchnotes />} />
               <Route path="/LoginPage" element={<LoginPage />} />
               <Route path="/CadPage" element={<CadPage />} />
