@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // ⬅️ importado para atualizar o estado global
+import { useAuth } from "../context/AuthContext"; // importado para atualizar o estado global
 import LoginForm from "../components/LoginForm";
 import "../styles/components/Login.scss";
 
@@ -15,7 +15,7 @@ async function getCsrfToken(API_BASE) {
 function LoginPage() {
   const API_BASE = "https://api-playground-back.onrender.com";
   const navigate = useNavigate();
-  const { login } = useAuth(); // ⬅️ usado para atualizar o contexto após login
+  const { login } = useAuth(); // usado para atualizar o contexto após login
 
   const handleLogin = async (formData) => {
     try {

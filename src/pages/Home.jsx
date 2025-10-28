@@ -8,7 +8,7 @@ const Home = () => {
       <div className="descricao">
         <h1 className="titulo-home">Resumo do meu projeto</h1>
         <p className="descricao_do_projeto">
-          O propósito desse projeto é simples: <strong>aprender na prática.</strong> Estou usando React no front e Django no back, explorando algumas APIs completamente aleatórias apenas pra simular diferentes cenários com necessidades e metodos distintos. 
+          O propósito desse projeto é simples: <strong>aprender na prática.</strong> Estou trabalhando com React no front e Django no back, explorando algumas APIs completamente aleatórias apenas pra simular diferentes cenários com necessidades e metodos distintos. 
           A ideia é treinar o front (sem focar muito no visual por enquanto), e no back-end, autenticação, deploy, versionamento e todo tipo de bugs que forem aparecendo no caminho. (não estão sendo poucos /cry )
           Com o tempo vou melhorando e adicionando novas funcionalidades e deixando tudo mais redondinho. Aqui em cima tem links de algumas funcionalidades que estão funcionando (espero), 
           tudo com o objetivo de evoluir minhas habilidades e me adaptar a diferentes contextos.
