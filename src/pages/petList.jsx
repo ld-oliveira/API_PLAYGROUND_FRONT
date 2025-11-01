@@ -135,22 +135,18 @@ function PetList() {
                   alt={pet.nome}
                 />
                 <h2>{pet.nome}</h2>
-                <p>
-                  <strong>Idade:</strong> {pet.idade}
-                </p>
-                <p>
-                  <strong>Dono:</strong> {pet.usuario?.username || "Anônimo"}
-                </p>
+                <p><strong>Idade:</strong> {pet.idade}</p>
+                <p><strong>Dono:</strong> {pet.usuario?.username || "Anônimo"}</p>
 
+                {}
                 <div className="pet-comment">
                   {pet.descricao || "Sem descrição"}
-
-                  {isOwner && (
-                    <button className="editar-btn" onClick={() => openEdit(pet)}>
-                      Editar
-                    </button>
-                  )}
                 </div>
+
+                {}
+                <button className="editar-btn" onClick={() => openEdit(pet)}>
+                  Editar
+              </button>
               </div>
             );
           })}
