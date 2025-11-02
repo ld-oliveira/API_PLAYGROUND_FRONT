@@ -15,7 +15,7 @@ import CadPage from "./pages/CadPage";
 import PetList from "./pages/petList";
 import AddPet from "./pages/addPet";
 
-import { AuthProvider } from "./context/AuthContext"; // ⬅️ import do contexto
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   useEffect(() => {
@@ -29,8 +29,8 @@ function App() {
   }, []);
 
   return (
-    <AuthProvider> {/* envolve toda a aplicação */}
-      <Router>
+    <Router>
+      <AuthProvider>
         <div className="app">
           <Header />
           <main>
@@ -48,9 +48,10 @@ function App() {
           </main>
           <Footer />
         </div>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 }
+
 
 export default App;
