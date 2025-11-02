@@ -44,19 +44,39 @@ export function AuthProvider({ children }) {
   }, [refreshUser]);
 
   const login = useCallback(async ({ nome_login, senha_login }) => {
-    const csrftoken = await getCsrfToken();
-    const res = await fetch(`${API_BASE}/users/login/`, {
-      method: "POST",
+  const csrftoken = await getCsrfToken();
+
+  const res = await fetch(`${API_BASE}/users/login/`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken,
+    },
+    body: JSON.stringify({ nome_login, senha_login }),
+  });
+
+  if (!res.ok) {
+    const txt = await res.text();
+    throw new Error(txt || "Falha no login");
+  }
+
+  setIsAuthenticated(true);
+  try {
+    const meRes = await fetch(`${API_BASE}/users/me/`, {
+      method: "GET",
       credentials: "include",
-      headers: { "Content-Type": "application/json", "X-CSRFToken": csrftoken },
-      body: JSON.stringify({ nome_login, senha_login }),
     });
-    if (!res.ok) {
-      const txt = await res.text();
-      throw new Error(txt || "Falha no login");
+
+    if (meRes.ok) {
+      const meData = await meRes.json();
+      setUser({ id: meData.id, username: meData.username, email: meData.email });
     }
-    await refreshUser();     // após logar no servidor, sincroniza o estado do front
-  }, [refreshUser]);
+  } catch (err) {
+    console.warn("Falha temporária ao buscar usuário após login:", err);
+  }
+}, []);
+
 
   const logout = useCallback(async () => {
     const csrftoken = await getCsrfToken();
