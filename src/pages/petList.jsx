@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/components/Petlist.scss";
 
 async function getCsrfToken(API_BASE) {
-  const res = await fetch(`${API_BASE}/users/csrf/`, {
-    credentials: "include",
-  });
+  const res = await fetch(`${API_BASE}/users/csrf/`, { credentials: "include" });
   const data = await res.json();
   return data.csrfToken;
 }
@@ -18,6 +16,8 @@ function PetList() {
   const [form, setForm] = useState({ id: null, nome: "", idade: "", descricao: "", foto: null });
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState(null);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState(null);
 
   const API_BASE = "https://api-playground-back.onrender.com";
 
@@ -55,6 +55,7 @@ function PetList() {
 
   const openEdit = (pet) => {
     setSaveError(null);
+    setDeleteError(null);
     setForm({
       id: pet.id,
       nome: pet.nome || "",
@@ -110,6 +111,36 @@ function PetList() {
       setSaveError("Não foi possível salvar. Verifique se você está logado e é o dono deste pet.");
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    const confirmar = window.confirm("Tem certeza que deseja excluir este pet? Esta ação não pode ser desfeita.");
+    if (!confirmar) return;
+
+    try {
+      setDeleting(true);
+      setDeleteError(null);
+
+      const csrftoken = await getCsrfToken(API_BASE);
+
+      const resp = await fetch(`${API_BASE}/pet/animais/${form.id}/`, {
+        method: "DELETE",
+        credentials: "include",
+        headers: { "X-CSRFToken": csrftoken },
+      });
+
+      if (!resp.ok && resp.status !== 204) {
+        const txt = await resp.text();
+        throw new Error(txt || "Erro ao excluir");
+      }
+
+      setPets((prev) => prev.filter((p) => p.id !== form.id));
+      closeEdit();
+    } catch (e) {
+      setDeleteError("Não foi possível excluir. Verifique se você é o dono deste pet.");
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -179,12 +210,16 @@ function PetList() {
             </label>
 
             {saveError && <p className="error">{saveError}</p>}
+            {deleteError && <p className="error">{deleteError}</p>}
 
             <div className="modal-actions">
-              <button className="cancel-btn" onClick={closeEdit} disabled={saving}>
+              <button className="cancel-btn" onClick={closeEdit} disabled={saving || deleting}>
                 Cancelar
               </button>
-              <button className="editar-btn" onClick={handleSave} disabled={saving}>
+              <button className="delete-btn" onClick={handleDelete} disabled={saving || deleting}>
+                {deleting ? "Excluindo..." : "Excluir"}
+              </button>
+              <button className="editar-btn" onClick={handleSave} disabled={saving || deleting}>
                 {saving ? "Salvando..." : "Salvar"}
               </button>
             </div>
