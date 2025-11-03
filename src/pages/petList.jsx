@@ -195,9 +195,18 @@ function PetList() {
             </label>
 
             <label>
-              Idade
-              <input name="idade" type="number" value={form.idade} onChange={handleChange} />
+              Descrição
+              <textarea
+                name="descricao"
+                value={form.descricao}
+                onChange={handleChange}
+                maxLength={350}
+              />
             </label>
+            <p className="char-count">
+              {form.descricao.length}/350 caracteres
+            </p>
+
 
             <label>
               Descrição

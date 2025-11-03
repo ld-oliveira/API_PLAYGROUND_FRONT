@@ -129,3 +129,10 @@
   &:hover { filter: brightness(1.05); }
   &:disabled { opacity: .6; cursor: not-allowed; }
 }
+
+.char-count {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 2px;
+  text-align: right;
+}
