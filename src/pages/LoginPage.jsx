@@ -12,11 +12,11 @@ function LoginPage() {
       await login({
         nome_login: formData.username,
         senha_login: formData.password,
-      }); 
+      });
       navigate("/");
     } catch (error) {
       console.error("Erro de login:", error);
-      alert("Usuário ou senha inválidos.");
+      alert(error.message || "Usuário ou senha inválidos.");
     }
   };
 

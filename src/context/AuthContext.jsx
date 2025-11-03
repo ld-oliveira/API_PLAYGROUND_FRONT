@@ -6,7 +6,7 @@ const API_BASE = "https://api-playground-back.onrender.com";
 
 async function getCsrfToken() {
   const res = await fetch(`${API_BASE}/users/csrf/`, { credentials: "include" });
-  const data = await res.json();
+  const data = await res.json(); // backend envia { csrfToken: "..." }
   return data.csrfToken;
 }
 
@@ -27,7 +27,13 @@ export function AuthProvider({ children }) {
         return;
       }
       const data = await res.json();
-      setUser({ id: data.id, username: data.username, email: data.email });
+      setUser({
+        id: data.id,
+        username: data.username,
+        email: data.email,
+        is_staff: data.is_staff,
+        is_superuser: data.is_superuser,
+      });
       setIsAuthenticated(true);
     } catch {
       setUser(null);
@@ -44,39 +50,48 @@ export function AuthProvider({ children }) {
   }, [refreshUser]);
 
   const login = useCallback(async ({ nome_login, senha_login }) => {
-  const csrftoken = await getCsrfToken();
+    const csrftoken = await getCsrfToken();
 
-  const res = await fetch(`${API_BASE}/users/login/`, {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      "X-CSRFToken": csrftoken,
-    },
-    body: JSON.stringify({ nome_login, senha_login }),
-  });
-
-  if (!res.ok) {
-    const txt = await res.text();
-    throw new Error(txt || "Falha no login");
-  }
-
-  setIsAuthenticated(true);
-  try {
-    const meRes = await fetch(`${API_BASE}/users/me/`, {
-      method: "GET",
+    const res = await fetch(`${API_BASE}/users/login/`, {
+      method: "POST",
       credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrftoken,
+      },
+      body: JSON.stringify({ nome_login, senha_login }),
     });
 
-    if (meRes.ok) {
-      const meData = await meRes.json();
-      setUser({ id: meData.id, username: meData.username, email: meData.email });
+    if (!res.ok) {
+      // aqui pegamos a mensagem do servidor (ex.: 401)
+      let msg = "Falha no login";
+      try { msg = (await res.json()).error || msg; } catch { }
+      throw new Error(msg);
     }
-  } catch (err) {
-    console.warn("Falha temporária ao buscar usuário após login:", err);
-  }
-}, []);
 
+    // Tenta usar o usuário retornado pelo /login (conforme sugeri no backend)
+    let data;
+    try {
+      data = await res.json();
+    } catch {
+      data = null;
+    }
+
+    if (data && data.user) {
+      setUser({
+        id: data.user.id,
+        username: data.user.username,
+        email: data.user.email,
+        is_staff: data.user.is_staff,
+        is_superuser: data.user.is_superuser,
+      });
+      setIsAuthenticated(true);
+      return;
+    }
+
+    // Fallback: busca /me/ (caso o /login não retorne user)
+    await refreshUser();
+  }, [refreshUser]);
 
   const logout = useCallback(async () => {
     const csrftoken = await getCsrfToken();
