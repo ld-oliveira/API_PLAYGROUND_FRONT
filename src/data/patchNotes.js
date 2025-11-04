@@ -1,5 +1,11 @@
 const patchNotes = [
 
+     {
+        versao: "v1.2.2",
+        data: "04-11-25",
+        conteudo: "Muitos bugs corrigidos na validação de login e alteração do header quando usuario logado e deslogado, adicionado botão editar e excluir pet."
+    },
+
     {
         versao: "v1.2.1",
         data: "07-10-25",

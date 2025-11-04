@@ -96,7 +96,7 @@ const Apitemp = () => {
 
         termic: tempAparente,
         visib: visib,
-});
+      });
 
 
     } catch (error) {
@@ -110,8 +110,6 @@ const Apitemp = () => {
       <div className="topo">
         <div className="apitemp">
           <h1>Veja a temperatura de qualquer lugar aqui</h1>
-          <p className="nota">nota: a primeira utilização está um pouco lenta por conta do serviço gratuito que deixa offline o servidor, apartir da segunda trabalha normalmente</p>
-
           <form onSubmit={handleSubmit}>
             <label htmlFor="lugar">Digite o nome do lugar que deseja ver:</label>
             <input
@@ -133,7 +131,7 @@ const Apitemp = () => {
               <div className="agora">
                 <h4 className="h4-agora">Informações de agora</h4>
                 <p>Temperatura atual: {resultado.atual}°C</p>
-                
+
               </div>
 
               <div className="proximas-horas">
