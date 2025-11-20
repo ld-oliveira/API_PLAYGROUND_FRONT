@@ -150,6 +150,7 @@ function PetList() {
   return (
     <div className="pet-list-page">
       <h1>Lista de Animais</h1>
+      <p className="p-petlist">Cadastre-se e faça o login para deixar registrado seu petzinho aqui ♥</p>
 
       {pets.length === 0 ? (
         <p className="empty-message">Nenhum animal cadastrado ainda.</p>
