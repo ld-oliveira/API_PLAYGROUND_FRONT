@@ -38,7 +38,7 @@ const Contato = () => {
           <FaWhatsapp />
           <p className='sub-image'>Whatsapp</p>
         </a>
-        <a className="Contato-icon" href="/cv" rel="noopener noreferrer">
+        <a className="Contato-icon" href="/Curriculo" rel="noopener noreferrer">
           <PiReadCvLogo />
           <p className='sub-image'>Cv interativo</p>
         </a>
