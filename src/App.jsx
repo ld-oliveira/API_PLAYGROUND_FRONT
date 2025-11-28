@@ -14,7 +14,7 @@ import LoginPage from "./pages/LoginPage";
 import CadPage from "./pages/CadPage";
 import PetList from "./pages/petList";
 import AddPet from "./pages/addPet";
-import Cv from "./pages/cv";
+import Cv from "./pages/Cv";
 
 import { AuthProvider } from "./context/AuthContext";
 
@@ -45,7 +45,7 @@ function App() {
               <Route path="/CadPage" element={<CadPage />} />
               <Route path="/petList" element={<PetList />} />
               <Route path="/AddPet" element={<AddPet />} />
-              <Route path="/cv" element={<Cv />} />
+              <Route path="/Cv" element={<Cv />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
