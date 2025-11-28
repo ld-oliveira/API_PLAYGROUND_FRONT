@@ -1,5 +1,10 @@
 const patchNotes = [
 
+    {
+        versao: "v1.2.3",
+        data: "28-11-25",
+        conteudo: "Acrescentado um CV interativo com links e destaques."
+    },
      {
         versao: "v1.2.2",
         data: "04-11-25",

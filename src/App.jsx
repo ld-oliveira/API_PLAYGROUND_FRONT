@@ -14,8 +14,10 @@ import LoginPage from "./pages/LoginPage";
 import CadPage from "./pages/CadPage";
 import PetList from "./pages/petList";
 import AddPet from "./pages/addPet";
+import Cv from "./pages/cv";
 
 import { AuthProvider } from "./context/AuthContext";
+
 
 function App() {
   useEffect(() => {
@@ -43,6 +45,7 @@ function App() {
               <Route path="/CadPage" element={<CadPage />} />
               <Route path="/petList" element={<PetList />} />
               <Route path="/AddPet" element={<AddPet />} />
+              <Route path="/cv" element={<Cv />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

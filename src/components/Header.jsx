@@ -42,8 +42,8 @@ const Header = () => {
               <Link to="/" onClick={() => setMenuAberto(false)}><button type="button">Home</button></Link>
               <Link to="/CadPage" onClick={() => setMenuAberto(false)}><button type="button">Cadastro</button></Link>
               <Link to="/LoginPage" onClick={() => setMenuAberto(false)}><button type="button">Login</button></Link>
-              <Link to="/apitemp" onClick={() => setMenuAberto(false)}><button type="button">Temperatura</button></Link>
               <Link to="/petList" onClick={() => setMenuAberto(false)}><button type="button">Petlist</button></Link>
+              <Link to="/apitemp" onClick={() => setMenuAberto(false)}><button type="button">Temperatura</button></Link>
               <Link to="/Patchnotes" onClick={() => setMenuAberto(false)}><button type="button">Patch Notes</button></Link>
               <Link to="/contato" onClick={() => setMenuAberto(false)}><button type="button">Sobre mim</button></Link>
             </>

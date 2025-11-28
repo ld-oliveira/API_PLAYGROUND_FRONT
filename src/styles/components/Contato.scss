@@ -4,8 +4,8 @@
 .title-contato {
     display: flex;
     flex-direction: column;
-    justify-content: center;  // centraliza verticalmente
-    align-items: center;      // centraliza horizontalmente
+    justify-content: center;  
+    align-items: center;
     flex-wrap: wrap;
     text-align: center;
     background-color: $titulos;
@@ -19,7 +19,32 @@
     min-width: 50px;
     margin: 0 auto;
     margin-top: 2rem;
+}
 
+.p-sobremim{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;  
+        align-items: center;
+        flex-wrap: wrap;
+        text-align: center;
+        background-color: $titulos;
+        padding: 1rem;
+        border-radius: 3rem;
+        max-width: 700px;
+        color: $fundo;
+        font-size: 1.1rem;
+        box-shadow: 0 0 10px rgba($color: #CFFE00, $alpha: 1.0);
+        flex: 1 1 100%;
+        min-width: 50px;
+        margin: 0 auto;
+        margin-top: 2rem;
+        font-family: sans-serif;
+        line-height: 1.6rem;
+    &:hover {
+    transform: translateY(3px);
+    box-shadow: 0 0 30px rgba($color: #CFFE00, $alpha: 1);
+}
 }
 
 .div-icon{
@@ -41,6 +66,15 @@
 
   &:hover {
     transform:scale3d(2);
-    box-shadow: 0 0 40px rgba($color: #CFFE00, $alpha: 0.9);
+    box-shadow: 0 0 5px rgba($color: #CFFE00, $alpha: 1);
       }
       }
+
+.sub-image{
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+

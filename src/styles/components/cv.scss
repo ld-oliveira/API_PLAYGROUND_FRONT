@@ -1,0 +1,69 @@
+@use '../base/variables' as *;
+
+.cv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    box-shadow: 0 0 20px rgba($color: #CFFE00, $alpha: 1.0);
+}
+
+.cv {
+  position: relative;
+}
+
+.imagem-cv {
+  position: relative;
+  display: inline-block;
+}
+
+.hotspot {
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  background:$titulos;
+  border-radius: 50%;
+  border: 1px solid black;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.tooltip {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  transform: translateY(-100%);
+  background: $titulos;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  width: 300px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: fadeIn 0.15s ease-out;
+  z-index: 10;
+}
+
+.tooltip-img {
+  width: 100%;
+  border-radius: 4px;
+  margin: 6px 0;
+}
+
+.tooltip h4 {
+  font-size: 14px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.tooltip p {
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-110%); }
+  to { opacity: 1; transform: translateY(-100%); }
+}
