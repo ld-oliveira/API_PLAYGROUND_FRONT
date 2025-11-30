@@ -70,6 +70,35 @@
       }
       }
 
+.Contato-icon-cv {
+  color: $mouseover;
+  font-size: 5rem;
+  border-radius: 3rem;
+  padding: 2rem;
+  border: 2px solid $mouseover;
+  animation: neonBlink 0.5s ease-in-out infinite alternate;
+
+  &:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px $mouseover;
+  }
+}
+
+@keyframes neonBlink {
+  0% {
+    box-shadow: 0 0 3px $mouseover;
+    filter: brightness(1);
+  }
+  100% {
+    box-shadow: 0 0 15px $mouseover, 0 0 25px $mouseover;
+    filter: brightness(1.3);
+  }
+
+
+}
+
+
+
 .sub-image{
     font-size: 1rem;
     display: flex;

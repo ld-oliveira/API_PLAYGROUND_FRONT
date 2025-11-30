@@ -10,8 +10,8 @@ const Contato = () => {
         <h2 className="title-contato">Sociais e contato</h2>
       </div>
       <div>
-        <p className='p-sobremim'>Oi😀, Meu nome é Leonardo ou só Léo mesmo, sou desenvolvedor de software, formado em Tecnologia da Informação pela UNIVESP. Atualmente trabalho com tecnologias como React, NestJS, Django, MongoDB e PostgreSQL, mas defitivamente não sou apegado a ferramentas especificas, para mim o importante é a que irá resolver o nosso problema, sempre busco criar soluções claras e objetivas para solucionar as mesmas.<br></br>
-          Antes de entrar de vez na área de tecnologia, construí uma trajetória marcada por adaptação e aprendizado constante. Trabalhei em diferentes áreas, o que me ajudou a desenvolver organização, foco em resultados e a capacidade de resolver problemas do jeito mais simples e eficiente possível, algo que hoje levo para todos os meus projetos como desenvolvedor.<br></br>
+        <p className='p-sobremim'>Oi😀, Meu nome é Leonardo ou só Léo mesmo, sou desenvolvedor de software, formado em Tecnologia da Informação pela UNIVESP. Atualmente trabalho com tecnologias como React, NestJS, Django, MongoDB e PostgreSQL, mas defitivamente não sou muito apegado a ferramentas especificas, para mim o que realmente importa é a que irá resolver o NOSSO problema. Busco criar soluções claras e objetivas para resolver os mesmos.<br></br>
+          Antes de entrar de vez na área de tecnologia, construí uma trajetória marcada por adaptação e aprendizado constante. Trabalhei em diferentes áreas, o que me ajudou a desenvolver organização, foco em resultados e a capacidade de resolver todo tipo de problema do jeito mais simples e eficiente possível, algo que hoje levo para todos os meus projetos como desenvolvedor.<br></br>
           A decisão de migrar para TI veio da minha paixão antiga por tecnologia e inovação, enfim consegui entrar de cabeça no universo da programação, consolidando bases fortes em desenvolvimento de software e sistemas web. Desde então, passei a criar projetos próprios, estudar diariamente e transformar essa paixão em profissão.<br></br>
           Fique a vontade para acessar os links a baixo e me conhecer um pouco melhor, estou sempre apto a conversar também, para absolutamente qualquer duvida me mande uma mensagem ☺️
         </p>
@@ -38,7 +38,7 @@ const Contato = () => {
           <FaWhatsapp />
           <p className='sub-image'>Whatsapp</p>
         </a>
-        <a className="Contato-icon" href="/Curriculo" rel="noopener noreferrer">
+        <a className="Contato-icon-cv" href="/Curriculo" rel="noopener noreferrer">
           <PiReadCvLogo />
           <p className='sub-image'>Cv interativo</p>
         </a>
