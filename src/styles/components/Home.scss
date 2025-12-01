@@ -5,10 +5,10 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap; // ajuda na responsividade
+  flex-wrap: wrap;
   gap: 10rem;
   padding: 10rem;
-  text-align: center; // alinha o texto centralizado quando estiver em coluna
+  text-align: center;
 }
 
 .descricao {
@@ -19,15 +19,21 @@
   color: $fundo;
   font-size: 1.1rem;
   line-height: 1.6;
+  text-align: justify;
   box-shadow: 0 0 10px rgba($color: #CFFE00, $alpha: 1.0);
-  flex: 1 1 300px; // flexível e adaptável
+  flex: 1 1 300px; 
   min-width: 280px;
 
-  //mouseover na descricao
+
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 0 40px rgba($color: #CFFE00, $alpha: 0.9);
+}
+
+.titulo-home{
+  text-align: center;
+  font-size: 2rem;
 }
 
 
@@ -96,4 +102,13 @@
   &:hover {
     color: black
   }
+}
+
+.sub-imagem{
+  color: $mouseover;
+  font-weight: bold;
+  margin-top: 10%;
+  font-size: 1.3rem;
+
+
 }

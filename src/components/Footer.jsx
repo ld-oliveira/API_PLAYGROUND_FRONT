@@ -13,7 +13,7 @@ const Footer = () => {
         <a href="https://www.linkedin.com/in/leo-b-oliveira/" target="_blank" rel="noopener noreferrer">
           <FaLinkedin />
         </a>
-        <a href="ld-oliveira@uol.com.br">
+        <a href="oliveira.leo.dev@gmail.com">
           <FaEnvelope />
         </a>
       </div>

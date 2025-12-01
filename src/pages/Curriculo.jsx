@@ -1,5 +1,6 @@
 import '../styles/components/cv.scss';
 import { useState } from 'react';
+import curriculo from '../assets/cv/curriculo.pdf';
 
 // função de importar imagens
 function importAll(r) {
@@ -11,7 +12,7 @@ function importAll(r) {
 }
 
 const imagens = importAll(
-    require.context('../assets/cv', false, /\.(png|jpe?g|svg)$/)
+    require.context('../assets/cv', false, /\.(png|jpe?g|svg)$/) //false para recursivo(busca em outras pastas)
 );
 
 const getImg = (name) => {
@@ -101,8 +102,8 @@ const Cv = () => {
             left: '2%',
             titulo: 'Certificado de fundamentos de SQL ',
             previewImg: getImg('SQL.jpg'),
-            descricao: 'Infelizmente perfi o acesso a plataforma do curso, mas tenho a imagem do certificado',
-            //link: " ",
+            descricao: 'Certificado de conclusão de curso em fundamentos do SQL',
+            link: " https://ibb.co/TM3fRPtG ",
         },
         {
             id: 10,
@@ -110,8 +111,8 @@ const Cv = () => {
             left: '2%',
             titulo: 'Certificado de Excel Avançado',
             previewImg: getImg('Excel.jpg'),
-            descricao: 'Infelizmente perfi o acesso a plataforma do curso, mas tenho a imagem do certificado',
-            //link: " ",
+            descricao: 'Certificado de conclusão de curso em Excel avançado',
+            link: "https://ibb.co/0yDd1w0H ",
         },
         {
             id: 11,
@@ -127,6 +128,7 @@ const Cv = () => {
 
     return (
         <div className="cv">
+            <p className='titulo-cv'>Existem vários pontos interativos no CV passe o mouse em cima para uma previa ou clique para seguir para a pagina do devido topíco </p>
 
             <div className="imagem-cv">
                 <img
@@ -159,6 +161,13 @@ const Cv = () => {
                     </div>
                 ))}
             </div>
+            <a
+                className="btn-download-cv"
+                href={curriculo}
+                download="Curriculo Leonardo Oliveira.pdf"
+            >
+                Baixar Currículo
+            </a>
 
         </div>
     );

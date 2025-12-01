@@ -6,18 +6,22 @@ const Home = () => {
   return (
     <section className="home-container">
       <div className="descricao">
-        <h1 className="titulo-home">Resumo do meu projeto</h1>
+        <h1 className="titulo-home">Resumo do projeto</h1>
         <p className="descricao_do_projeto">
-          O propósito desse projeto é simples: <strong>aprender na prática.</strong> Estou trabalhando com React no front e Django no back, explorando algumas APIs para simular diferentes cenários com necessidades e metodos distintos.
-          A ideia é treinar o front (sem focar muito no visual por enquanto e sim na estrutura, organização e legibilidade), e no back-end o foco atual é trabalhar autenticação, deploy, versionamento e todos os tipo de bugs e impecilios que forem aparecendo no caminho.
-          Com o tempo vou melhorando e adicionando novas funcionalidades e deixando tudo mais redondinho. Aqui em cima tem links de algumas funcionalidades que estou trabalhando,
-          tudo com o objetivo de evoluir minhas habilidades e me adaptar a diferentes contextos.
-          Se tiver ideias, sugestões, achar algum bug ou só quer jogar conversa fora, nesse  <Link className='link-contato' to="/contato"> link aqui</Link> tem várias formas de falar comigo. Me chama lá! 😉
+          O propósito desse projeto é simples: <strong>aprender na prática.</strong> Aqui, estou desenvolvendo o front-end em React e o back-end em Django, explorando diferentes APIs externas para simular cenários variados e exercitar métodos, integrações e boas práticas.<br></br>
+          No front-end, o foco está na arquitetura, organização e legibilidade do código, deixando a parte visual em segundo plano por enquanto. Já no back-end, a prioridade é trabalhar autenticação, deploy, versionamento, além de lidar com os desafios reais que surgem no processo, bugs, erros de configuração e ajustes de ambiente.<br></br>
+          O projeto está em constante evolução: novas funcionalidades, melhorias estruturais e refinamentos vão sendo implementados conforme avanço no aprendizado. Nos links acima você encontra algumas das features que estão em desenvolvimento.
+          Caso tenha sugestões, encontre algum problema ou queira trocar uma ideia, basta acessar este <Link className='link-contato' to="/contato">link</Link> para falar comigo. Será um prazer conversar! 😉
         </p>
       </div>
 
-      <div className="foto-container">
-        <img className="foto-perfil" src={imagemFixa} alt="Descrição da imagem" />
+      <div>
+        <div className="foto-container">
+          <img className="foto-perfil" src={imagemFixa} alt="Descrição da imagem" />
+        </div>
+        <div className='sub-imagem'>
+          <p className='sub-imagem'>Leonardo Oliveira <br></br>Desenvolvedor de Software</p>
+        </div>
       </div>
     </section>
   );
