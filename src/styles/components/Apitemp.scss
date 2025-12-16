@@ -5,12 +5,69 @@
   text-align: center;
   color: $titulos;
 
-  h1 {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+  // NOVO: header do título + botão (mesma linha)
+  .info-wrapper {
+    position: relative;
+    display: inline-flex;        // fica do tamanho do conteúdo
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;       // mantém o espaçamento que seu h1 tinha
   }
 
-  .nota{
+  h1 {
+    font-size: 1.8rem;
+    margin: 0;                   // ALTERADO: antes tinha margin-bottom
+  }
+
+  .info-bt {
+    width: 20px;
+    height: 20px;
+    background-color: $titulos;
+    border-radius: 50%;
+    border: 1px solid black;
+    cursor: pointer;
+    animation: neonBlink 0.5s ease-in-out infinite alternate;
+    flex: 0 0 auto;
+  }
+
+  .hotspot-panel {
+  position: absolute;
+  top: 140%;
+  left: 100%;               // ancora à direita da bolinha
+  margin-left: 8px;         // pequeno afastamento visual
+
+  width: 260px;
+  padding: 1rem;
+
+  background-color: #0b1a20;
+  border: 1px solid #CFFE00;
+  border-radius: 8px;
+
+  color: #fff;
+  font-size: 0.85rem;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  z-index: 10;
+}
+
+
+  .info-wrapper:hover .hotspot-panel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .info-h4 {
+    color: $titulos;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .nota {
     font-size: 10px;
   }
 
@@ -98,7 +155,7 @@
         color: #000;
       }
     }
-      
+
     .proximas-horas {
       flex: 2;
       display: flex;
@@ -125,14 +182,11 @@
           height: 60%;
           width: 1px;
           background-color: #000;
-
-          
         }
       }
     }
   }
 
-  
   .inferior {
     display: flex;
     flex-wrap: wrap;

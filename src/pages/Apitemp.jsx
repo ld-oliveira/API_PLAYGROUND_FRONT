@@ -109,7 +109,18 @@ const Apitemp = () => {
     <section>
       <div className="topo">
         <div className="apitemp">
-          <h1>Veja a temperatura de qualquer lugar aqui</h1>
+          <div className="info-wrapper">
+            <h1>Veja a temperatura de qualquer lugar aqui</h1>
+            <button className="info-bt" type="button" aria-label="Temp"></button>
+            <div className="hotspot-panel">
+              <h4 className="info-h4">Infos sobre a Temperatura</h4>
+              <p>
+                O objetivo desta funcionalidade não é o visual, mas sim a lógica de integração com uma API externa.
+                Foram utilizados diferentes endpoints, com tratamento e organização dos dados em JSON conforme o retorno da API.
+              </p>
+            </div>
+          </div>
+
           <form onSubmit={handleSubmit}>
             <label htmlFor="lugar">Digite o nome do lugar que deseja ver:</label>
             <input

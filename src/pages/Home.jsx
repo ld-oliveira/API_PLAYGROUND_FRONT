@@ -2,6 +2,8 @@ import imagemFixa from '../assets/images/perfil.jpeg';
 import '../styles/components/Home.scss';
 import { Link } from 'react-router-dom';
 
+
+
 const Home = () => {
   return (
     <section className="home-container">
@@ -16,6 +18,20 @@ const Home = () => {
       </div>
 
       <div>
+        <div className="infos-div">
+          <div className="info-wrapper">
+
+            <p className="info-p">Passe o mouse aqui ⮕ </p>
+            <button className="info-bt"></button>
+
+            <div className="hotspot-panel">
+              <h4 className="info-h4">INFORMAÇÕES EXTRAS</h4>
+              <p>Em VARIOS locais do projeto existem essas bolinhas, passe o mouse por cima delas para ter mais informações sobre o topico especifico. alguns contam a ideia, outros o porque foi utilizado daquela maneira.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="foto-container">
           <img className="foto-perfil" src={imagemFixa} alt="Descrição da imagem" />
         </div>

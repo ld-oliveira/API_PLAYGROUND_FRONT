@@ -5,17 +5,25 @@
   background: $fundo;
   padding: 2rem;
 
+  // NOVO: linha do título + botão à direita
+  .petlist-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+
   h1 {
     text-align: center;
-    margin-bottom: 2rem;
+    margin: 0; // ALTERADO: antes era margin-bottom: 2rem
     color: $titulos;
   }
 
-  .p-petlist{
+  .p-petlist {
     text-align: center;
     margin-bottom: 1rem;
     color: $titulos;
-
   }
 
   .empty-message,
@@ -76,6 +84,57 @@
       font-size: 0.85rem;
     }
   }
+
+  // INFO / HOTSPOT (mantido, só garantindo que encaixa no header)
+  .info-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hotspot-panel {
+    position: absolute;
+    top: 130%;
+    left: 0;
+
+    width: 260px;
+    padding: 1rem;
+
+    background-color: #0b1a20;
+    border: 1px solid #CFFE00;
+    border-radius: 8px;
+
+    color: #fff;
+    font-size: 0.85rem;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-5px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .info-wrapper:hover .hotspot-panel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .info-bt {
+    width: 20px;
+    height: 20px;
+    background-color: $titulos;
+    border-radius: 50%;
+    border: 1px solid black;
+    cursor: pointer;
+    margin-top: 1px;
+    margin-left: 5px;
+    animation: neonBlink 0.5s ease-in-out infinite alternate;
+  }
+
+  .info-h4 {
+    color: $titulos;
+  }
 }
 
 .editar-btn {
@@ -92,7 +151,6 @@
   &:hover { background-color: #d4ff00; color: #000; }
 }
 
-
 .cancel-btn {
   background: transparent;
   color: #000;
@@ -107,20 +165,39 @@
 }
 
 .modal-backdrop {
-  position: fixed; inset: 0; background: rgba(0,0,0,.6);
-  display: flex; align-items: center; justify-content: center; z-index: 90;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 90;
 }
 
 .modal {
-  background: #d4ff00; color: #000; border-radius: 16px;
-  padding: 18px; width: min(520px, 92vw); box-shadow: 0 10px 30px rgba(0,0,0,.6);
+  background: #d4ff00;
+  color: #000;
+  border-radius: 16px;
+  padding: 18px;
+  width: min(520px, 92vw);
+  box-shadow: 0 10px 30px rgba(0,0,0,.6);
 
   label { display: block; font-weight: 700; margin: 10px 0 6px; }
   input, textarea { width: 100%; border-radius: 10px; border: none; padding: 8px 10px; }
   textarea { min-height: 110px; resize: vertical; }
 
-  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 14px; }
-  .error { color: #7a0000; font-weight: 700; margin-top: 8px; }
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 14px;
+  }
+
+  .error {
+    color: #7a0000;
+    font-weight: 700;
+    margin-top: 8px;
+  }
 }
 
 .delete-btn {

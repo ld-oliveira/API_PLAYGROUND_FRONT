@@ -1,5 +1,15 @@
 const patchNotes = [
+    {
+        versao: "v1.2.5",
+        data: "16-12-25",
+        conteudo: "Foram adicionados pontos informativos em algumas páginas, explicando a finalidade e o contexto de determinadas decisões de implementação."
+    },
 
+    {
+        versao: "v1.2.4",
+        data: "15-12-25",
+        conteudo: "adicionei um fluxo no petlist para preenchimento automatico com pets genericos, unicamente com intuito de preenchimento visual, foi usado a API Faker e algumas listas com nomes e frases, para cada pet real criado, será excluido um generico."
+    },
     {
         versao: "v1.2.3",
         data: "28-11-25",

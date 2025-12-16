@@ -149,7 +149,18 @@ function PetList() {
 
   return (
     <div className="pet-list-page">
-      <h1>Lista de Animais</h1>
+      <div className="petlist-header">
+        <h1>Lista de Animais</h1>
+        <div className="info-wrapper">
+          <button className="info-bt" type="button" aria-label="Adendo sobre a lista"></button>
+          <div className="hotspot-panel">
+            <h4 className="info-h4">ADENDO SOBRE A LISTA</h4>
+            <p>
+              Alguns pets foram gerados para preenchimento, ao criar um novo pet "REAL", um "generico" será substituido, ao apagar um "REAL", um "generico" será incluso (objetivo preenchimento de interface)
+            </p>
+          </div>
+        </div>
+      </div>
       <p className="p-petlist">Cadastre-se e faça o login para deixar registrado seu petzinho aqui ♥</p>
 
       {pets.length === 0 ? (

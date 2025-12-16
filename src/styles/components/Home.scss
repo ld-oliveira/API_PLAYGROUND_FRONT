@@ -112,3 +112,70 @@
 
 
 }
+.infos-div {
+  color: $titulos;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  position: relative;
+  top: -100px;
+}
+
+
+.info-bt {
+  width: 20px;
+  height: 20px;
+  background-color:$titulos;
+  border-radius: 50%;
+  border: 1px solid black;
+  cursor: pointer;
+  margin-top: 1px;
+  margin-left: 5px;
+  animation: neonBlink 0.5s ease-in-out infinite alternate;
+}
+
+.info-p {
+  margin: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.info-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hotspot-panel {
+  position: absolute;
+  top: 130%;
+  left: 0;
+
+  width: 260px;
+  padding: 1rem;
+
+  background-color: #0b1a20;
+  border: 1px solid #CFFE00;
+  border-radius: 8px;
+
+  color: #fff;
+  font-size: 0.85rem;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.info-wrapper:hover .hotspot-panel {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.info-h4{
+  color: $titulos;
+}
