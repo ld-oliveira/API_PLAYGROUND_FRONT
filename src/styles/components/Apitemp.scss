@@ -1,60 +1,85 @@
 @use '../base/variables' as *;
 
+.apitemp-page {
+  padding: 48px 16px;
+}
+
+.apitemp-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ===== Cabeçalho + busca ===== */
 .apitemp {
-  padding: 2rem;
   text-align: center;
   color: $titulos;
+  margin-bottom: 26px;
 
-  // NOVO: header do título + botão (mesma linha)
   .info-wrapper {
     position: relative;
-    display: inline-flex;        // fica do tamanho do conteúdo
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin-bottom: 1.5rem;       // mantém o espaçamento que seu h1 tinha
+    margin-bottom: 14px;
   }
 
   h1 {
-    font-size: 1.8rem;
-    margin: 0;                   // ALTERADO: antes tinha margin-bottom
+    font-size: clamp(1.2rem, 2.2vw, 1.9rem);
+    margin: 0;
+    letter-spacing: 0.2px;
   }
 
   .info-bt {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background-color: $titulos;
     border-radius: 50%;
-    border: 1px solid black;
+    border: 1px solid #000;
     cursor: pointer;
-    animation: neonBlink 0.5s ease-in-out infinite alternate;
     flex: 0 0 auto;
+    box-shadow: 0 0 0 4px rgba(207, 254, 0, 0.12);
+    animation: neonBlink 0.65s ease-in-out infinite alternate;
   }
 
   .hotspot-panel {
-  position: absolute;
-  top: 140%;
-  left: 100%;               // ancora à direita da bolinha
-  margin-left: 8px;         // pequeno afastamento visual
+    position: absolute;
+    top: 140%;
+    left: 100%;
+    margin-left: 10px;
 
-  width: 260px;
-  padding: 1rem;
+    width: 280px;
+    padding: 14px;
 
-  background-color: #0b1a20;
-  border: 1px solid #CFFE00;
-  border-radius: 8px;
+    background: rgba(11, 26, 32, 0.92);
+    border: 1px solid $titulos;
+    border-radius: 12px;
 
-  color: #fff;
-  font-size: 0.85rem;
+    color: #fff;
+    font-size: 0.86rem;
+    line-height: 1.35;
 
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-5px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
 
-  z-index: 10;
-}
+    z-index: 20;
 
+    /* “setinha” do tooltip */
+    &::before {
+      content: "";
+      position: absolute;
+      left: -8px;
+      top: 16px;
+      width: 14px;
+      height: 14px;
+      background: rgba(11, 26, 32, 0.92);
+      border-left: 1px solid $titulos;
+      border-bottom: 1px solid $titulos;
+      transform: rotate(45deg);
+    }
+  }
 
   .info-wrapper:hover .hotspot-panel {
     opacity: 1;
@@ -64,157 +89,274 @@
 
   .info-h4 {
     color: $titulos;
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 8px 0;
+    font-size: 0.95rem;
   }
 
-  .nota {
-    font-size: 10px;
-  }
-
-  form {
-    margin-bottom: 2rem;
+  .apitemp-form {
+    margin-top: 10px;
 
     label {
       display: block;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: #eaeaea;
+      opacity: 0.9;
+    }
+  }
+
+  .apitemp-form-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  input {
+    padding: 12px 14px;
+    width: min(520px, 92vw);
+    border-radius: 12px;
+    border: 1px solid rgba(207, 254, 0, 0.35);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    outline: none;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.55);
     }
 
-    input {
-      padding: 0.5rem;
-      width: 60%;
-      max-width: 300px;
-      border-radius: 10px;
-      border: 1px solid #000;
+    &:focus {
+      border-color: $titulos;
+      box-shadow: 0 0 0 4px rgba(207, 254, 0, 0.14);
+    }
+  }
+
+  button[type="submit"] {
+    padding: 12px 16px;
+    background: $titulos;
+    color: #091015;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(207, 254, 0, 0.12);
     }
 
-    button {
-      margin-left: 1rem;
-      padding: 0.5rem 1.2rem;
-      background-color: $titulos;
-      color: $fundo;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #f4f4f4;
-      }
+    &:active {
+      transform: translateY(0);
+      opacity: 0.95;
     }
   }
 }
 
+/* ===== Resultado ===== */
 .resultado-dia {
-  background-color: $titulos;
-  padding: 2rem;
-  border-radius: 1.5rem;
-  margin-top: 2rem;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid #ccc;
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid rgba(207, 254, 0, 0.25);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+
+  .resultado-top {
+    padding: 10px 10px 14px 10px;
+    border-bottom: 1px solid rgba(207, 254, 0, 0.14);
+    margin-bottom: 16px;
+  }
 
   h2 {
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    color: $fundo;
+    margin: 0 0 6px 0;
+    font-size: 1.35rem;
+    color: #fff;
+
+    span {
+      color: $titulos;
+    }
   }
 
-  p {
-    margin: 0.5rem 0;
-    color: #000;
+  .resultado-sub {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.92rem;
+
+    strong {
+      color: #fff;
+    }
   }
 
+  /* bloco “agora + próximas horas” */
   .infos-horas {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    background-color: #f8f8f8;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    margin-top: 2rem;
-    border: 1px solid #ccc;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 14px;
+    margin-top: 10px;
 
-    .agora {
-      flex: 1;
+    @media (max-width: 760px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .agora {
+    border-radius: 16px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    .h4-agora {
+      margin: 0 0 10px 0;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .temp-big {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      justify-content: flex-start;
+    }
+
+    .temp-n {
+      font-size: 3rem;
+      font-weight: 900;
+      color: $titulos;
+      line-height: 1;
+    }
+
+    .temp-u {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.85);
+    }
+  }
+
+  .proximas-horas {
+    border-radius: 16px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+
+    .proximas-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .h4-horas {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 800;
+    }
+
+    .hint-scroll {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.55);
+      white-space: nowrap;
+    }
+
+    /* faixa scrollável */
+    .horas-strip {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+
+      /* “feel” mais premium no scroll */
+      scroll-snap-type: x mandatory;
+
+      &::-webkit-scrollbar {
+        height: 8px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: rgba(207, 254, 0, 0.25);
+        border-radius: 999px;
+      }
+      &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 999px;
+      }
+    }
+
+    .hora {
+      min-width: 110px;
+      scroll-snap-align: start;
+
+      border-radius: 14px;
+      padding: 12px 12px;
+
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(207, 254, 0, 0.18);
+
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      padding-right: 1.5rem;
-
-      h4 {
-        margin-bottom: 0.5rem;
-        font-weight: bold;
-        font-size: 1.1rem;
-        color: #000;
-      }
-
-      p {
-        margin: 0.3rem 0;
-        color: #000;
-      }
-    }
-
-    .proximas-horas {
-      flex: 2;
-      display: flex;
-      justify-content: space-around;
       align-items: center;
-      border-left: 2px solid #000;
-      padding-left: 2rem;
+      gap: 6px;
 
-      .hora {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 0.95rem;
-        color: #000;
-        position: relative;
-        padding: 0 1rem;
+      .hora-h {
+        color: rgba(255, 255, 255, 0.72);
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
 
-        &:not(:last-child)::after {
-          content: "";
-          position: absolute;
-          right: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          height: 60%;
-          width: 1px;
-          background-color: #000;
-        }
+      .hora-t {
+        color: #fff;
+        font-weight: 900;
+        letter-spacing: 0.2px;
       }
     }
   }
 
+  /* cards dos próximos dias */
   .inferior {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
 
-    > div {
-      flex: 1 1 220px;
-      background-color: #f4f4f4;
-      border-radius: 1rem;
-      padding: 1rem;
-      text-align: center;
-      border: 1px solid #ccc;
-
-      p {
-        margin: 0.5rem 0;
-        color: #000;
-      }
-    }
-
-    .outinfo {
-      background-color: #eaeaea;
-
-      .texto-outinfo {
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-      }
+    @media (max-width: 920px) {
+      grid-template-columns: 1fr;
     }
   }
+
+  .dia-card {
+    border-radius: 16px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    p {
+      margin: 6px 0;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    strong {
+      color: #fff;
+    }
+
+    .dia-title {
+      margin: 0 0 10px 0;
+      font-weight: 900;
+      color: $titulos;
+      letter-spacing: 0.25px;
+    }
+
+    .dia-avg {
+      color: #fff;
+    }
+  }
+}
+
+/* mantém sua animação */
+@keyframes neonBlink {
+  from { opacity: 0.75; }
+  to { opacity: 1; }
 }

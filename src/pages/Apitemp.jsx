@@ -106,12 +106,13 @@ const Apitemp = () => {
   };
 
   return (
-    <section>
-      <div className="topo">
+    <section className="apitemp-page">
+      <div className="apitemp-shell">
         <div className="apitemp">
           <div className="info-wrapper">
             <h1>Veja a temperatura de qualquer lugar aqui</h1>
             <button className="info-bt" type="button" aria-label="Temp"></button>
+
             <div className="hotspot-panel">
               <h4 className="info-h4">Infos sobre a Temperatura</h4>
               <p>
@@ -121,69 +122,88 @@ const Apitemp = () => {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form className="apitemp-form" onSubmit={handleSubmit}>
             <label htmlFor="lugar">Digite o nome do lugar que deseja ver:</label>
-            <input
-              type="text"
-              id="lugar"
-              value={lugar}
-              onChange={(e) => setLugar(e.target.value)}
-              placeholder="Ex: São Paulo, Brasil"
-            />
-            <button type="submit">Buscar</button>
+
+            <div className="apitemp-form-row">
+              <input
+                type="text"
+                id="lugar"
+                value={lugar}
+                onChange={(e) => setLugar(e.target.value)}
+                placeholder="Ex: São Paulo, Brasil"
+              />
+              <button type="submit">Buscar</button>
+            </div>
           </form>
         </div>
 
         {resultado && (
           <div className="resultado-dia">
-            <h2>Resultado para: {lugar}</h2>
+            <div className="resultado-top">
+              <h2>Resultado para: <span>{lugar}</span></h2>
+              <p className="resultado-sub">
+                Temperatura aparente: <strong>{resultado.termic}°C</strong> • Visibilidade: <strong>{resultado.visib} km</strong>
+              </p>
+            </div>
 
             <div className="infos-horas">
               <div className="agora">
-                <h4 className="h4-agora">Informações de agora</h4>
-                <p>Temperatura atual: {resultado.atual}°C</p>
-
+                <h4 className="h4-agora">Agora</h4>
+                <div className="temp-big">
+                  <span className="temp-n">{resultado.atual}</span>
+                  <span className="temp-u">°C</span>
+                </div>
               </div>
 
               <div className="proximas-horas">
-                <h4 className="h4-horas">proximas horas</h4>
-                {proximas.map((item, index) => (
-                  <div key={index} className="hora">
-                    <span>{item.horario}</span>
-                    <span>{item.temperatura}</span>
-                  </div>
-                ))}
+                <div className="proximas-head">
+                  <h4 className="h4-horas">Próximas 6 horas</h4>
+                  {/*<span className="hint-scroll">arraste / role</span>*/}
+                </div>
+
+                <div className="horas-strip">
+                  {proximas.map((item, index) => (
+                    <div key={index} className="hora">
+                      <span className="hora-h">{item.horario}</span>
+                      <span className="hora-t">{item.temperatura}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
             <div className="inferior">
-              <div className="vinte-quatro">
-                <p><strong>Média prevista para Amanhã:</strong> {resultado.amanha?.avg}°C</p>
-                <p>Minima: {resultado.amanha?.min}°C</p>
-                <p>Maxima: {resultado.amanha?.max}°C</p>
-                <p>Visibilidade: {resultado.amanha?.visib} km</p>
+              <div className="dia-card">
+                <p className="dia-title">Amanhã</p>
+                <p className="dia-avg"><strong>Média:</strong> {resultado.amanha?.avg}°C</p>
+                <p>Min: {resultado.amanha?.min}°C</p>
+                <p>Max: {resultado.amanha?.max}°C</p>
+                <p>Visib: {resultado.amanha?.visib} km</p>
               </div>
 
-              <div className="quarenta-oito">
-                <p><strong>Média prevista para daqui 2 dias:</strong> {resultado.depois_de_amanha?.avg}°C</p>
-                <p>Minima: {resultado.depois_de_amanha?.min}°C</p>
-                <p>Maxima: {resultado.depois_de_amanha?.max}°C</p>
-                <p>Visibilidade: {resultado.depois_de_amanha?.visib} km</p>
+              <div className="dia-card">
+                <p className="dia-title">Daqui 2 dias</p>
+                <p className="dia-avg"><strong>Média:</strong> {resultado.depois_de_amanha?.avg}°C</p>
+                <p>Min: {resultado.depois_de_amanha?.min}°C</p>
+                <p>Max: {resultado.depois_de_amanha?.max}°C</p>
+                <p>Visib: {resultado.depois_de_amanha?.visib} km</p>
               </div>
 
-              <div className="setenta-duas">
-                <p><strong>Média prevista para daqui 3 dias:</strong> {resultado.terceiro_dia?.avg}°C</p>
-                <p>Minima: {resultado.terceiro_dia?.min}°C</p>
-                <p>Maxima: {resultado.terceiro_dia?.max}°C</p>
-                <p>Visibilidade: {resultado.terceiro_dia?.visib} km</p>
+              <div className="dia-card">
+                <p className="dia-title">Daqui 3 dias</p>
+                <p className="dia-avg"><strong>Média:</strong> {resultado.terceiro_dia?.avg}°C</p>
+                <p>Min: {resultado.terceiro_dia?.min}°C</p>
+                <p>Max: {resultado.terceiro_dia?.max}°C</p>
+                <p>Visib: {resultado.terceiro_dia?.visib} km</p>
               </div>
-
             </div>
           </div>
         )}
       </div>
     </section>
   );
+
 };
 
 export default Apitemp;
