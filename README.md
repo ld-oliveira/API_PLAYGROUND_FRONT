@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# 🚀 LD-OLIVEIRA / API Playground
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bem-vindo ao **API Playground** 👋  
+Este projeto não nasceu para ser “bonito”.  
+Ele nasceu para **aprender na prática**.
 
-## Available Scripts
+Aqui é onde experimento integrações com APIs, arquitetura de aplicações web e boas práticas de desenvolvimento — errando, ajustando e entendendo o porquê de cada decisão.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🧠 A proposta
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Este repositório funciona como um laboratório.  
+Nada aqui foi feito como “exemplo de tutorial”; são cenários reais sendo construídos, refatorados e evoluídos com o tempo.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Não se trata de um produto final, mas de um projeto em constante construção — até porque sempre haverá algo a ser trabalhado.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Stack utilizada
 
-### `npm run build`
+### Front-end
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- React Router
+- SCSS (Sass)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Back-end
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Python (Django + REST)
+- PostgreSQL
+- Autenticação e controle de acesso
 
-### `npm run eject`
+### Infra / Conceitos
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Deploy em produção
+- Variáveis de ambiente
+- Consumo de APIs externas
+- Comunicação front ↔ back
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🔌 O que existe no projeto
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Alguns exemplos do que você vai encontrar por aqui:
 
-## Learn More
+- 🔐 Fluxos de autenticação
+- 🌦️ Consumo de APIs externas
+- 🐾 CRUD com backend próprio
+- 🧩 Componentes reutilizáveis
+- 📄 Organização de código pensando em crescimento
+- 📝 Patch notes documentando a evolução
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Cada parte do projeto existe por um motivo específico e pode ser ajustada conforme novas ideias surgem.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 📌 Status
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+🚧 Projeto em evolução contínua
 
-### Analyzing the Bundle Size
+Refatorações, melhorias e novos módulos fazem parte do fluxo normal de desenvolvimento.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Observação final
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este repositório não segue um roteiro fixo.  
+Ele reflete decisões técnicas reais, ajustes de arquitetura e diferentes abordagens testadas ao longo do desenvolvimento.
