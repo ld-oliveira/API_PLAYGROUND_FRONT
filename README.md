@@ -1,69 +1,85 @@
-# 🚀 LD-OLIVEIRA / API Playground
+# 🎮 **LD-OLIVEIRA / API Playground**
 
-Bem-vindo ao **API Playground** 👋  
-Este projeto não nasceu para ser “bonito”.  
-Ele nasceu para **aprender na prática**.
+Bem-vindo ao **API Playground**.  
+Este projeto não nasceu com foco em estética.  
+Ele nasceu para **aprender fazendo**.
 
-Aqui é onde experimento integrações com APIs, arquitetura de aplicações web e boas práticas de desenvolvimento — errando, ajustando e entendendo o porquê de cada decisão.
-
----
-
-## 🧠 A proposta
-
-Este repositório funciona como um laboratório.  
-Nada aqui foi feito como “exemplo de tutorial”; são cenários reais sendo construídos, refatorados e evoluídos com o tempo.
-
-Não se trata de um produto final, mas de um projeto em constante construção — até porque sempre haverá algo a ser trabalhado.
+Aqui é onde eu experimento integrações com APIs, arquitetura de aplicações web e boas práticas de desenvolvimento, errando, ajustando e entendendo o **porquê de cada decisão técnica**.
 
 ---
 
-## 🛠️ Stack utilizada
+## 🧠 **A proposta**
 
-### Front-end
+Este repositório funciona como um **laboratório de aprendizado**.
+
+Nada aqui foi pensado como tutorial pronto ou exemplo engessado. São **cenários reais**, construídos, refatorados e evoluídos ao longo do tempo, conforme novos problemas aparecem e novas soluções são testadas.
+
+Não é um produto final, e nem pretende ser. É um projeto **vivo**, sempre em evolução.
+
+---
+
+## 🛠️ **Stack utilizada**
+
+### **Front-end**
 
 - React
-- React Router
 - SCSS (Sass)
 
-### Back-end
+### **Back-end**
 
-- Python (Django + REST)
+- Python (Django REST Framework)
 - PostgreSQL
-- Autenticação e controle de acesso
 
-### Infra / Conceitos
+### **Infra e conceitos trabalhados**
 
 - Deploy em produção
 - Variáveis de ambiente
 - Consumo de APIs externas
-- Comunicação front ↔ back
+- Comunicação **front-end ↔ back-end**
+- Autenticação e controle de acesso
+- Organização e escalabilidade de código
 
 ---
 
-## 🔌 O que existe no projeto
+## 🔌 **O que existe no projeto**
 
 Alguns exemplos do que você vai encontrar por aqui:
 
-- 🔐 Fluxos de autenticação
-- 🌦️ Consumo de APIs externas
-- 🐾 CRUD com backend próprio
-- 🧩 Componentes reutilizáveis
-- 📄 Organização de código pensando em crescimento
-- 📝 Patch notes documentando a evolução
+- 🔐 **Fluxos de autenticação**
+- 🌦️ **Consumo de APIs externas**
+- 🐾 **CRUD com backend próprio**
+- 🧩 **Componentes reutilizáveis**
+- 📄 **Organização de código pensando em crescimento**
+- 📝 **Patch notes documentando a evolução**
 
-Cada parte do projeto existe por um motivo específico e pode ser ajustada conforme novas ideias surgem.
-
----
-
-## 📌 Status
-
-🚧 Projeto em evolução contínua
-
-Refatorações, melhorias e novos módulos fazem parte do fluxo normal de desenvolvimento.
+Cada funcionalidade existe por um **motivo específico**, e pode ser ajustada ou refatorada conforme novas ideias surgem.
 
 ---
 
-## Observação final
+## 📌 **Status do projeto**
 
-Este repositório não segue um roteiro fixo.  
-Ele reflete decisões técnicas reais, ajustes de arquitetura e diferentes abordagens testadas ao longo do desenvolvimento.
+🚧 **Em evolução contínua**
+
+Refatorações, melhorias e novos módulos fazem parte do fluxo natural de desenvolvimento.
+
+---
+
+## 🎯 **Objetivo pessoal**
+
+O objetivo deste projeto é **evoluir como desenvolvedor full stack**, colocando em prática conceitos que vão além do código, como:
+
+- Tomada de decisões técnicas
+- Organização de projetos reais
+- Manutenção e evolução de código
+- Integração entre diferentes camadas da aplicação
+
+---
+
+## 📎 **Observação final**
+
+Este repositório **não segue um roteiro fixo**.  
+Ele reflete decisões técnicas reais, testes de abordagem e ajustes de arquitetura feitos ao longo do desenvolvimento.
+
+Se você está lendo este README e tiver qualquer sugestão, comentário ou ideia para compartilhar, fique à vontade para acessar **ld-oliveira.com** e entrar em contato comigo. Vou realmente gostar de conversar com você, e toda sugestão é muito bem-vinda.
+
+Se você é uma **empresa ou recrutador**, atualmente estou em busca de uma oportunidade e ficarei muito lisonjeado em receber seu contato, mesmo que seja apenas para nos conhecer-mos melhor.
