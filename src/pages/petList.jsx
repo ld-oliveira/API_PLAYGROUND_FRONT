@@ -31,6 +31,7 @@ function PetList() {
           credentials: "include",
           headers: { "X-CSRFToken": csrftoken },
         });
+
         if (meResp.ok) {
           const meData = await meResp.json();
           setCurrentUser(meData);
@@ -41,7 +42,9 @@ function PetList() {
           credentials: "include",
           headers: { "X-CSRFToken": csrftoken },
         });
+
         if (!response.ok) throw new Error("Erro ao carregar animais");
+
         const data = await response.json();
         setPets(data);
       } catch (err) {
@@ -50,6 +53,7 @@ function PetList() {
         setLoading(false);
       }
     }
+
     bootstrap();
   }, [API_BASE]);
 
@@ -73,17 +77,20 @@ function PetList() {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
+
     if (name === "foto") {
       setForm((f) => ({ ...f, foto: files && files[0] ? files[0] : null }));
-    } else {
-      setForm((f) => ({ ...f, [name]: value }));
+      return;
     }
+
+    setForm((f) => ({ ...f, [name]: value }));
   };
 
   const handleSave = async () => {
     try {
       setSaving(true);
       setSaveError(null);
+
       const csrftoken = await getCsrfToken(API_BASE);
 
       const fd = new FormData();
@@ -115,7 +122,9 @@ function PetList() {
   };
 
   const handleDelete = async () => {
-    const confirmar = window.confirm("Tem certeza que deseja excluir este pet? Esta ação não pode ser desfeita.");
+    const confirmar = window.confirm(
+      "Tem certeza que deseja excluir este pet? Esta ação não pode ser desfeita."
+    );
     if (!confirmar) return;
 
     try {
@@ -144,110 +153,120 @@ function PetList() {
     }
   };
 
-  if (loading) return <p>Carregando animais...</p>;
-  if (error) return <p>Erro: {error}</p>;
+  if (loading) return <p className="loading-message">Carregando animais...</p>;
+  if (error) return <p className="error-message">Erro: {error}</p>;
 
   return (
-    <div className="pet-list-page">
-      <div className="petlist-header">
-        <h1>Lista de Animais</h1>
-        <div className="info-wrapper">
-          <button className="info-bt" type="button" aria-label="Adendo sobre a lista"></button>
-          <div className="hotspot-panel">
-            <h4 className="info-h4">ADENDO SOBRE A LISTA</h4>
-            <p>
-              Alguns pets foram gerados para preenchimento, ao criar um novo pet "REAL", um "generico" será substituido, ao apagar um "REAL", um "generico" será incluso (objetivo preenchimento de interface)
-            </p>
-          </div>
-        </div>
-      </div>
-      <p className="p-petlist">Cadastre-se e faça o login para deixar registrado seu petzinho aqui ♥</p>
+    <section className="pet-list-page">
+      <div className="petlist-shell">
+        <div className="petlist-header">
+          <h1>Lista de Animais</h1>
 
-      {pets.length === 0 ? (
-        <p className="empty-message">Nenhum animal cadastrado ainda.</p>
-      ) : (
-        <div className="pets-grid">
-          {pets.map((pet) => {
-            const isOwner =
-              currentUser && pet?.usuario?.id && Number(pet.usuario.id) === Number(currentUser.id);
+          <div className="info-wrapper">
+            <button className="info-bt" type="button" aria-label="Adendo sobre a lista"></button>
 
-            return (
-              <div className="pet-card" key={pet.id}>
-                <img
-                  src={pet.foto?.startsWith("http") ? pet.foto : `${API_BASE}${pet.foto}`}
-                  alt={pet.nome}
-                />
-                <h2>{pet.nome}</h2>
-                <p><strong>Idade:</strong> {pet.idade}</p>
-                <p><strong>Dono:</strong> {pet.usuario?.username || "Anônimo"}</p>
-
-                <div className="pet-comment">
-                  {pet.descricao || "Sem descrição"}
-                </div>
-
-                {isOwner && (
-                  <button className="editar-btn" onClick={() => openEdit(pet)}>
-                    Editar
-                  </button>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      )}
-
-      {editing && (
-        <div className="modal-backdrop">
-          <div className="modal">
-            <h3>Editar pet</h3>
-
-            <label>
-              Nome
-              <input name="nome" value={form.nome} onChange={handleChange} />
-            </label>
-
-            <label>
-              Descrição
-              <textarea
-                name="descricao"
-                value={form.descricao}
-                onChange={handleChange}
-                maxLength={350}
-              />
-            </label>
-            <p className="char-count">
-              {form.descricao.length}/350 caracteres
-            </p>
-
-
-            <label>
-              Descrição
-              <textarea name="descricao" value={form.descricao} onChange={handleChange} />
-            </label>
-
-            <label className="file-label">
-              Foto (opcional)
-              <input name="foto" type="file" accept="image/*" onChange={handleChange} />
-            </label>
-
-            {saveError && <p className="error">{saveError}</p>}
-            {deleteError && <p className="error">{deleteError}</p>}
-
-            <div className="modal-actions">
-              <button className="cancel-btn" onClick={closeEdit} disabled={saving || deleting}>
-                Cancelar
-              </button>
-              <button className="delete-btn" onClick={handleDelete} disabled={saving || deleting}>
-                {deleting ? "Excluindo..." : "Excluir"}
-              </button>
-              <button className="editar-btn" onClick={handleSave} disabled={saving || deleting}>
-                {saving ? "Salvando..." : "Salvar"}
-              </button>
+            <div className="hotspot-panel">
+              <h4 className="info-h4">ADENDO SOBRE A LISTA</h4>
+              <p>
+                Alguns pets foram gerados para preenchimento, ao criar um novo pet
+                &quot;REAL&quot;, um &quot;generico&quot; será substituido, ao apagar um
+                &quot;REAL&quot;, um &quot;generico&quot; será incluso (objetivo preenchimento
+                de interface)
+              </p>
             </div>
           </div>
         </div>
-      )}
-    </div>
+
+        <p className="p-petlist">Cadastre-se e faça o login para deixar registrado seu petzinho aqui ♥</p>
+
+        <div className="pets-wrap">
+          {pets.length === 0 ? (
+            <p className="empty-message">Nenhum animal cadastrado ainda.</p>
+          ) : (
+            <div className="pets-grid">
+              {pets.map((pet) => {
+                const isOwner =
+                  currentUser && pet?.usuario?.id && Number(pet.usuario.id) === Number(currentUser.id);
+
+                return (
+                  <div className="pet-card" key={pet.id}>
+                    <img
+                      src={pet.foto?.startsWith("http") ? pet.foto : `${API_BASE}${pet.foto}`}
+                      alt={pet.nome}
+                    />
+
+                    <h2>{pet.nome}</h2>
+
+                    <p>
+                      <strong>Idade:</strong> {pet.idade}
+                    </p>
+
+                    <p>
+                      <strong>Dono:</strong> {pet.usuario?.username || "Anônimo"}
+                    </p>
+
+                    <div className="pet-comment">{pet.descricao || "Sem descrição"}</div>
+
+                    {isOwner && (
+                      <button className="editar-btn" onClick={() => openEdit(pet)}>
+                        Editar
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        {editing && (
+          <div className="modal-backdrop">
+            <div className="modal">
+              <h3>Editar pet</h3>
+
+              <label>
+                Nome
+                <input name="nome" value={form.nome} onChange={handleChange} />
+              </label>
+
+              <label>
+                Descrição
+                <textarea
+                  name="descricao"
+                  value={form.descricao}
+                  onChange={handleChange}
+                  maxLength={350}
+                />
+              </label>
+
+              <p className="char-count">{form.descricao.length}/350 caracteres</p>
+
+              <label className="file-label">
+                Foto (opcional)
+                <input name="foto" type="file" accept="image/*" onChange={handleChange} />
+              </label>
+
+              {saveError && <p className="error">{saveError}</p>}
+              {deleteError && <p className="error">{deleteError}</p>}
+
+              <div className="modal-actions">
+                <button className="cancel-btn" onClick={closeEdit} disabled={saving || deleting}>
+                  Cancelar
+                </button>
+
+                <button className="delete-btn" onClick={handleDelete} disabled={saving || deleting}>
+                  {deleting ? "Excluindo..." : "Excluir"}
+                </button>
+
+                <button className="editar-btn" onClick={handleSave} disabled={saving || deleting}>
+                  {saving ? "Salvando..." : "Salvar"}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
