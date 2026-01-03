@@ -47,7 +47,7 @@ function LoginForm({ onSubmit, onForgotPassword }) {
       </div>
 
       <button type="submit">Entrar</button>
-      <button type="button" className="senha" onClick={onForgotPassword}>Esqueci minha senha</button>
+      {/*<button type="button" className="senha" onClick={onForgotPassword}>Esqueci minha senha</button>*/}
     </form>
   );
 }
