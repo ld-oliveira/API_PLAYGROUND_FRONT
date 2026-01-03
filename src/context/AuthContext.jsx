@@ -44,7 +44,6 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     (async () => {
       setAuthLoading(true);
-      await refreshUser();   // reidrata no reload/F5 com base na sessão
       setAuthLoading(false);
     })();
   }, [refreshUser]);
@@ -63,13 +62,11 @@ export function AuthProvider({ children }) {
     });
 
     if (!res.ok) {
-      // aqui pegamos a mensagem do servidor (ex.: 401)
       let msg = "Falha no login";
       try { msg = (await res.json()).error || msg; } catch { }
       throw new Error(msg);
     }
 
-    // Tenta usar o usuário retornado pelo /login (conforme sugeri no backend)
     let data;
     try {
       data = await res.json();
@@ -89,7 +86,6 @@ export function AuthProvider({ children }) {
       return;
     }
 
-    // Fallback: busca /me/ (caso o /login não retorne user)
     await refreshUser();
   }, [refreshUser]);
 

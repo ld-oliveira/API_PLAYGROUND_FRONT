@@ -20,9 +20,13 @@ function LoginPage() {
     }
   };
 
+  const handleForgotPassword = () => {
+    navigate("/Senha");
+  };
+
   return (
     <div className="login-page">
-      <LoginForm onSubmit={handleLogin} />
+      <LoginForm onSubmit={handleLogin} onForgotPassword={handleForgotPassword} />
     </div>
   );
 }

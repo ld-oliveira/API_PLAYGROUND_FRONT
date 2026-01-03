@@ -15,6 +15,9 @@ import CadPage from "./pages/CadPage";
 import PetList from "./pages/petList";
 import AddPet from "./pages/addPet";
 import Cv from "./pages/Curriculo";
+import Senha from "./pages/Senha";
+import ResetSenha from "./pages/ResetSenha";
+
 
 import { AuthProvider } from "./context/AuthContext";
 
@@ -42,11 +45,14 @@ function App() {
               <Route path="/Apitemp" element={<Apitempo />} />
               <Route path="/Patchnotes" element={<Patchnotes />} />
               <Route path="/LoginPage" element={<LoginPage />} />
+              <Route path="/Senha" element={<Senha />} />
+              <Route path="/ResetSenha" element={<ResetSenha />} />
               <Route path="/CadPage" element={<CadPage />} />
               <Route path="/petList" element={<PetList />} />
               <Route path="/AddPet" element={<AddPet />} />
               <Route path="/Curriculo" element={<Cv />} />
               <Route path="*" element={<NotFound />} />
+
             </Routes>
           </main>
           <Footer />

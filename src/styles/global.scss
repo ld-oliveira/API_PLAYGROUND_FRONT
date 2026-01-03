@@ -2,7 +2,6 @@
 @use './components/Header' as*;
 @use './base/variables' as*;
 
-// @use './components/Footer' as*; // incluir depois
 
 html, body {
   background: $fundo;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function LoginForm({ onSubmit }) {
+function LoginForm({ onSubmit, onForgotPassword }) {
   const [formData, setFormData] = useState({
     username: "",
     password: ""
@@ -8,7 +8,7 @@ function LoginForm({ onSubmit }) {
 
   const handleChange = (e) => {
     setFormData({
-      ...formData, 
+      ...formData,
       [e.target.name]: e.target.value
     });
   };
@@ -24,8 +24,8 @@ function LoginForm({ onSubmit }) {
 
       <div className="form-group">
         <label>Usuário</label>
-        <input 
-          type="text" 
+        <input
+          type="text"
           name="username"
           value={formData.username}
           onChange={handleChange}
@@ -36,8 +36,8 @@ function LoginForm({ onSubmit }) {
 
       <div className="form-group">
         <label>Senha</label>
-        <input 
-          type="password" 
+        <input
+          type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
@@ -47,6 +47,7 @@ function LoginForm({ onSubmit }) {
       </div>
 
       <button type="submit">Entrar</button>
+      <button type="button" className="senha" onClick={onForgotPassword}>Esqueci minha senha</button>
     </form>
   );
 }
