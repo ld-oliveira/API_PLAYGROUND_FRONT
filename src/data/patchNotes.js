@@ -1,5 +1,10 @@
 const patchNotes = [
     {
+        versao: "v1.2.6",
+        data: "06-01-26",
+        conteudo: "Alteração completa na paleta de cores do projeto e remoção do botão cadastro no Header da pagina, movido para dentro da caixa de Login"
+    },
+    {
         versao: "v1.2.5",
         data: "16-12-25",
         conteudo: "Foram adicionados pontos informativos em algumas páginas, explicando a finalidade e o contexto de determinadas decisões de implementação."

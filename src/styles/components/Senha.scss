@@ -10,12 +10,16 @@
 }
 
 .senha-page .senha-bloco {
-  background: $titulos;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 360px;
   max-width: calc(100vw - 2rem);
+  padding: 2rem;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(207, 254, 0, 0.25);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -30,9 +34,10 @@
 .senha-page .senha-title {
   margin: 0 0 0.25rem 0;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.25rem;
-  color: black;
+  color: #fff;
+  letter-spacing: 0.2px;
 }
 
 .senha-page .senha-label {
@@ -44,32 +49,50 @@
 .senha-page .senha-label input {
   width: 100%;
   padding: 0.6rem 0.75rem;
-  border: 1px solid rgba(0, 0, 0, 0.18);
-  border-radius: 8px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(207, 254, 0, 0.35);
+  color: #fff;
+
   outline: none;
-  background: rgba(255, 255, 255, 0.92);
-  color: black;
   box-sizing: border-box;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+  }
 }
 
 .senha-page .senha-label input:focus {
-  border-color: rgba(0, 0, 0, 0.45);
-  background: white;
+  border-color: $titulos;
+  box-shadow: 0 0 0 4px rgba(207, 254, 0, 0.14);
 }
 
 .senha-page .senha-submit {
   width: 100%;
   height: 40px;
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-}
 
-.senha-page .senha-submit:hover {
-  background: #333;
+  background: $titulos;
+  color: #091015;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(207, 254, 0, 0.12);
+  }
+
+  &:active {
+    transform: translateY(0);
+    opacity: 0.95;
+  }
 }
 
 .senha-page .senha-inferior {
@@ -82,8 +105,8 @@
 
 .senha-page .senha-msg {
   margin: 0;
-  color: black;
-  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
   line-height: 1.35;
   padding: 0 0.25rem;
 }
@@ -91,14 +114,25 @@
 .senha-page .senha-reenviar {
   width: 100%;
   height: 40px;
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-}
 
-.senha-page .senha-reenviar:hover {
-  background: #333;
+  background: $titulos;
+  color: #091015;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(207, 254, 0, 0.12);
+  }
+
+  &:active {
+    transform: translateY(0);
+    opacity: 0.95;
+  }
 }
