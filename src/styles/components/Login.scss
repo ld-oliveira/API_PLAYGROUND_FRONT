@@ -73,3 +73,26 @@ button.senha {
       background: transparent;
 }
 }
+
+
+button.cadastro {
+    margin-top: .75rem;
+    width: auto;
+    padding: 0;
+    background: transparent;
+    color: #0a66c2;
+    border: none;
+    border-radius: 0;
+    font-size: .9rem;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:hover {
+      color: #084b8a;
+      background: transparent;
+}
+}

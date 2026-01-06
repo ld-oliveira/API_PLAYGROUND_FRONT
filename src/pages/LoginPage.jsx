@@ -24,9 +24,13 @@ function LoginPage() {
     navigate("/Senha");
   };
 
+  const handleClickCadastro = () => {
+    navigate("/CadPage");
+  };
+
   return (
     <div className="login-page">
-      <LoginForm onSubmit={handleLogin} onForgotPassword={handleForgotPassword} />
+      <LoginForm onSubmit={handleLogin} onForgotPassword={handleForgotPassword} onClickCadastro={handleClickCadastro} />
     </div>
   );
 }

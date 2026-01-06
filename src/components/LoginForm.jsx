@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function LoginForm({ onSubmit, onForgotPassword }) {
+function LoginForm({ onSubmit, onForgotPassword, onClickCadastro }) {
   const [formData, setFormData] = useState({
     username: "",
     password: ""
@@ -48,6 +48,7 @@ function LoginForm({ onSubmit, onForgotPassword }) {
 
       <button type="submit">Entrar</button>
       {/*<button type="button" className="senha" onClick={onForgotPassword}>Esqueci minha senha</button>*/}
+      <button type="button" className="cadastro" onClick={onClickCadastro}>Cadastro</button>
     </form>
   );
 }
