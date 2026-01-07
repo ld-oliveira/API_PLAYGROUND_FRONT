@@ -26,7 +26,7 @@ function CadPage() {
           "Content-Type": "application/json",
           "X-CSRFToken": csrftoken,
         },
-        body: JSON.stringify(formData), // agora bate com o header
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
